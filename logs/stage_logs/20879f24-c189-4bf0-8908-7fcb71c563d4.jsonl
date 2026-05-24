@@ -1,0 +1,34 @@
+{"stage": "schema_detection", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.351000"}
+{"stage": "schema_detection", "event": "end", "duration": 0.0045, "details": {}, "timestamp": "2026-05-25T01:20:30.355485"}
+{"stage": "column_classification", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.355890"}
+{"stage": "column_classification", "event": "end", "duration": 0.0035, "details": {}, "timestamp": "2026-05-25T01:20:30.359366"}
+{"stage": "quality_profile", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.359710"}
+{"stage": "quality_profile", "event": "end", "duration": 0.0049, "details": {}, "timestamp": "2026-05-25T01:20:30.364650"}
+{"stage": "quality_analysis_before", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.365331"}
+{"stage": "quality_analysis_before", "event": "end", "duration": 0.0249, "details": {}, "timestamp": "2026-05-25T01:20:30.390215"}
+{"stage": "duplicate_scan", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.390997"}
+{"stage": "duplicate_scan", "event": "end", "duration": 0.0064, "details": {}, "timestamp": "2026-05-25T01:20:30.397436"}
+{"stage": "outlier_scan", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.398114"}
+{"stage": "outlier_scan", "event": "end", "duration": 0.0421, "details": {}, "timestamp": "2026-05-25T01:20:30.440271"}
+{"stage": "pattern_discovery", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.441172"}
+{"stage": "pattern_discovery", "event": "end", "duration": 0.0316, "details": {}, "timestamp": "2026-05-25T01:20:30.472790"}
+{"stage": "imputation_strategy_selection", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.473260"}
+{"stage": "imputation_strategy_selection", "event": "end", "duration": 0.0041, "details": {}, "timestamp": "2026-05-25T01:20:30.477401"}
+{"stage": "adaptive_imputation", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.477740"}
+{"stage": "adaptive_imputation", "event": "end", "duration": 0.0105, "details": {}, "timestamp": "2026-05-25T01:20:30.488297"}
+{"stage": "noise_and_duplicate_removal", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.488829"}
+{"stage": "noise_and_duplicate_removal", "event": "end", "duration": 0.0302, "details": {}, "timestamp": "2026-05-25T01:20:30.519007"}
+{"stage": "feature_selection", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.519507"}
+{"stage": "feature_selection", "event": "end", "duration": 0.0061, "details": {}, "timestamp": "2026-05-25T01:20:30.525634"}
+{"stage": "dataset_optimizer", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.526014"}
+{"stage": "dataset_optimizer", "event": "end", "duration": 0.0033, "details": {}, "timestamp": "2026-05-25T01:20:30.529367"}
+{"stage": "model_ready_transform", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.529676"}
+{"stage": "model_ready_transform", "event": "end", "duration": 0.0056, "details": {}, "timestamp": "2026-05-25T01:20:30.535313"}
+{"stage": "quality_analysis_after", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.535761"}
+{"stage": "quality_analysis_after", "event": "end", "duration": 0.0134, "details": {}, "timestamp": "2026-05-25T01:20:30.549163"}
+{"stage": "write_csv_artifacts", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.549550"}
+{"stage": "write_csv_artifacts", "event": "end", "duration": 0.0099, "details": {}, "timestamp": "2026-05-25T01:20:30.559441"}
+{"stage": "write_json_artifacts", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.559763"}
+{"stage": "write_json_artifacts", "event": "end", "duration": 0.0068, "details": {}, "timestamp": "2026-05-25T01:20:30.566570"}
+{"stage": "report_generation", "event": "start", "details": {}, "timestamp": "2026-05-25T01:20:30.566829"}
+{"stage": "report_generation", "event": "end", "duration": 0.0302, "details": {}, "timestamp": "2026-05-25T01:20:30.597043"}

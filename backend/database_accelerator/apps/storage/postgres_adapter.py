@@ -20,10 +20,17 @@ class PostgresAdapter:
                     processing_time REAL,
                     artifact_paths TEXT,
                     benchmark_status TEXT,
+                    metadata_json TEXT,
                     updated_time TEXT NOT NULL
                 )
                 '''
             )
+            # If table already existed before adding metadata_json, ensure the column exists
+            try:
+                cursor.execute(f"ALTER TABLE {self.table_name} ADD COLUMN IF NOT EXISTS metadata_json TEXT")
+            except Exception:
+                # best-effort: ignore if unable to alter
+                pass
 
     def upsert(self, metadata):
         self.ensure_schema()
@@ -34,8 +41,8 @@ class PostgresAdapter:
                 f'''
                 INSERT INTO {self.table_name} (
                     dataset_id, dataset_name, upload_path, status, created_time,
-                    processing_time, artifact_paths, benchmark_status, updated_time
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    processing_time, artifact_paths, benchmark_status, metadata_json, updated_time
+                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 ON CONFLICT(dataset_id) DO UPDATE SET
                     dataset_name=excluded.dataset_name,
                     upload_path=excluded.upload_path,
@@ -44,6 +51,7 @@ class PostgresAdapter:
                     processing_time=excluded.processing_time,
                     artifact_paths=excluded.artifact_paths,
                     benchmark_status=excluded.benchmark_status,
+                    metadata_json=excluded.metadata_json,
                     updated_time=excluded.updated_time
                 ''',
                 [
@@ -55,6 +63,7 @@ class PostgresAdapter:
                     payload.get('processing_time'),
                     json.dumps(payload.get('artifact_paths') or {}),
                     payload.get('benchmark_status') or 'pending',
+                    json.dumps(payload or {}),
                     payload.get('updated_at') or payload.get('created_at') or datetime.now().isoformat(),
                 ]
             )
@@ -63,7 +72,7 @@ class PostgresAdapter:
     def get(self, dataset_id):
         self.ensure_schema()
         with connection.cursor() as cursor:
-            cursor.execute(f'SELECT dataset_id, dataset_name, upload_path, status, created_time, processing_time, artifact_paths, benchmark_status, updated_time FROM {self.table_name} WHERE dataset_id = %s', [dataset_id])
+            cursor.execute(f'SELECT dataset_id, dataset_name, upload_path, status, created_time, processing_time, artifact_paths, benchmark_status, metadata_json, updated_time FROM {self.table_name} WHERE dataset_id = %s', [dataset_id])
             row = cursor.fetchone()
         if not row:
             return None
@@ -72,7 +81,7 @@ class PostgresAdapter:
     def list_all(self):
         self.ensure_schema()
         with connection.cursor() as cursor:
-            cursor.execute(f'SELECT dataset_id, dataset_name, upload_path, status, created_time, processing_time, artifact_paths, benchmark_status, updated_time FROM {self.table_name} ORDER BY created_time DESC')
+            cursor.execute(f'SELECT dataset_id, dataset_name, upload_path, status, created_time, processing_time, artifact_paths, benchmark_status, metadata_json, updated_time FROM {self.table_name} ORDER BY created_time DESC')
             rows = cursor.fetchall()
         return [self._row_to_metadata(row) for row in rows]
 
@@ -96,7 +105,8 @@ class PostgresAdapter:
             artifact_paths = json.loads(artifact_paths) if artifact_paths else {}
         except Exception:
             artifact_paths = {}
-        return {
+        # base metadata from columns
+        base = {
             'id': row[0],
             'dataset_id': row[0],
             'filename': row[1],
@@ -109,6 +119,17 @@ class PostgresAdapter:
             'processing_time': row[5],
             'artifact_paths': artifact_paths,
             'benchmark_status': row[7],
-            'updated_at': row[8],
-            'updated_time': row[8],
+            'updated_at': row[9] if len(row) > 9 else row[8],
+            'updated_time': row[9] if len(row) > 9 else row[8],
         }
+        # merge optional metadata_json if present
+        try:
+            metadata_json = row[8] if len(row) > 8 else None
+            if metadata_json:
+                parsed = json.loads(metadata_json)
+                # prefer explicit fields from parsed metadata
+                base.update({k: v for k, v in parsed.items() if v is not None})
+        except Exception:
+            pass
+
+        return base

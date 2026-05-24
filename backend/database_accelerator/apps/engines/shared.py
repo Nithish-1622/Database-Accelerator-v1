@@ -82,10 +82,37 @@ def schema_detection(dataframe: pd.DataFrame) -> Dict:
 
 
 def column_classification(dataframe: pd.DataFrame) -> Dict[str, List[str]]:
+    import warnings
+    datetime_columns: List[str] = []
+    for column in dataframe.columns:
+        series = dataframe[column]
+        # treat explicit datetime dtypes as datetime
+        is_tz = False
+        try:
+            is_tz = isinstance(series.dtype, pd.DatetimeTZDtype)
+        except Exception:
+            is_tz = False
+        if pd.api.types.is_datetime64_any_dtype(series) or is_tz:
+            datetime_columns.append(str(column))
+            continue
+        # only attempt string-like columns for heuristic detection
+        if series.dtype.kind not in {'O', 'U', 'S'}:
+            continue
+        sample = series.dropna().astype('string').head(25)
+        if sample.empty:
+            continue
+        # suppress user warnings from pandas trying multiple parse strategies
+        with warnings.catch_warnings():
+            warnings.filterwarnings('ignore', category=UserWarning)
+            parsed = pd.to_datetime(sample, errors='coerce')
+        if float(parsed.notna().mean()) >= 0.8 and parsed.nunique(dropna=True) > 0:
+            datetime_columns.append(str(column))
+
+    text_columns = [str(c) for c in dataframe.select_dtypes(include=['object', 'string', 'category']).columns if str(c) not in datetime_columns]
     return {
         'numeric': [str(c) for c in dataframe.select_dtypes(include=['number']).columns],
-        'text': [str(c) for c in dataframe.select_dtypes(include=['object', 'string', 'category']).columns],
-        'datetime': [str(c) for c in dataframe.select_dtypes(include=['datetime', 'datetimetz']).columns],
+        'text': text_columns,
+        'datetime': sorted(set(datetime_columns) | {str(c) for c in dataframe.select_dtypes(include=['datetime', 'datetimetz']).columns}),
         'boolean': [str(c) for c in dataframe.select_dtypes(include=['bool']).columns],
     }
 
@@ -392,11 +419,20 @@ def recommended_model_input(dataframe: pd.DataFrame, classification: Dict[str, L
         if column in model_df.columns:
             encoded, _ = pd.factorize(model_df[column].astype('string'), sort=True)
             model_df[column] = encoded
+    import warnings
     for column in classification['datetime']:
         if column in model_df.columns:
-            parsed = pd.to_datetime(model_df[column], errors='coerce')
-            model_df[column] = parsed.view('int64') // 10 ** 9
-            model_df[column] = model_df[column].fillna(0).astype('int64')
+            # parse robustly and convert to epoch seconds; keep NaT as 0
+            with warnings.catch_warnings():
+                warnings.filterwarnings('ignore', category=UserWarning)
+                parsed = pd.to_datetime(model_df[column], errors='coerce')
+            def _to_epoch(x):
+                try:
+                    return int(x.timestamp()) if not pd.isna(x) else 0
+                except Exception:
+                    return 0
+            timestamps = parsed.apply(_to_epoch).astype('int64')
+            model_df[column] = timestamps
     for column in model_df.select_dtypes(include=['number']).columns:
         series = model_df[column]
         std = float(series.std()) if pd.notna(series.std()) else 0.0
