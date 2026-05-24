@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "product_name": "Laptop",
+    "category": "Electronics",
+    "price": 1200.00,
+    "quantity_in_stock": 45,
+    "supplier": "Tech Corp",
+    "last_updated": "2024-01-10"
+  },
+  {
+    "id": 2,
+    "product_name": "Mouse",
+    "category": "Electronics",
+    "price": 25.50,
+    "quantity_in_stock": 150,
+    "supplier": "Peripheral Inc",
+    "last_updated": "2024-01-12"
+  },
+  {
+    "id": 3,
+    "product_name": "Keyboard",
+    "category": "Electronics",
+    "price": 75.00,
+    "quantity_in_stock": 85,
+    "supplier": "Peripheral Inc",
+    "last_updated": "2024-01-11"
+  },
+  {
+    "id": 4,
+    "product_name": "Monitor",
+    "category": "Electronics",
+    "price": 350.00,
+    "quantity_in_stock": 32,
+    "supplier": "Display World",
+    "last_updated": "2024-01-09"
+  }
+]

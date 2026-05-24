@@ -1,0 +1,30 @@
+{
+  "id": "07208d98-e3ba-423b-b0e9-64be7d93f570",
+  "filename": "sample_employees.csv",
+  "file_path": "K:\\Database-Accelerator-v1\\uploads\\raw\\07208d98-e3ba-423b-b0e9-64be7d93f570_sample_employees.csv",
+  "file_type": "csv",
+  "file_size": 502,
+  "file_size_mb": 0.0,
+  "rows": 10,
+  "columns": 6,
+  "column_names": [
+    "name",
+    "age",
+    "salary",
+    "department",
+    "years_employed",
+    "hire_date"
+  ],
+  "column_types": {
+    "name": "string",
+    "age": "integer",
+    "salary": "integer",
+    "department": "string",
+    "years_employed": "integer",
+    "hire_date": "string"
+  },
+  "status": "optimized",
+  "error_message": null,
+  "created_at": "2026-05-23T16:37:26.852623",
+  "updated_at": "2026-05-23T22:13:16.469814"
+}

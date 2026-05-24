@@ -1,0 +1,419 @@
+{
+  "results": [
+    {
+      "dataset": {
+        "name": "small_clean",
+        "rows": 250,
+        "numeric_columns": 6,
+        "text_columns": 3,
+        "missing_rate": 0.03,
+        "duplicate_rate": 0.02
+      },
+      "dataset_id": "e5fddcae-843b-4024-b038-a9296d60c86c",
+      "elapsed_seconds": 0.2945,
+      "slowest_stage": [
+        "report_generation",
+        0.0987
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.004,
+        "column_classification": 0.0008,
+        "pattern_discovery": 0.0854,
+        "quality_analysis_before": 0.0072,
+        "adaptive_imputation": 0.0086,
+        "noise_and_duplicate_removal": 0.0122,
+        "feature_importance": 0.0048,
+        "dataset_optimizer": 0.0013,
+        "model_ready_transform": 0.0048,
+        "quality_analysis_after": 0.0073,
+        "write_csv_artifacts": 0.0079,
+        "report_generation": 0.0987,
+        "total": 0.243
+      },
+      "rows_after_pipeline": 255,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "medium_noisy",
+        "rows": 2500,
+        "numeric_columns": 12,
+        "text_columns": 5,
+        "missing_rate": 0.12,
+        "duplicate_rate": 0.06
+      },
+      "dataset_id": "6d52720a-e2fd-4310-87b9-7d8d6ed486c2",
+      "elapsed_seconds": 0.4406,
+      "slowest_stage": [
+        "write_csv_artifacts",
+        0.0942
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0188,
+        "column_classification": 0.0017,
+        "pattern_discovery": 0.072,
+        "quality_analysis_before": 0.028,
+        "adaptive_imputation": 0.0244,
+        "noise_and_duplicate_removal": 0.0502,
+        "feature_importance": 0.0125,
+        "dataset_optimizer": 0.0041,
+        "model_ready_transform": 0.0078,
+        "quality_analysis_after": 0.0151,
+        "write_csv_artifacts": 0.0942,
+        "report_generation": 0.0218,
+        "total": 0.3508
+      },
+      "rows_after_pipeline": 2650,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "large_sparse",
+        "rows": 12000,
+        "numeric_columns": 18,
+        "text_columns": 6,
+        "missing_rate": 0.2,
+        "duplicate_rate": 0.04
+      },
+      "dataset_id": "1e093936-2712-4d16-95c9-295c31ac866a",
+      "elapsed_seconds": 1.4194,
+      "slowest_stage": [
+        "write_csv_artifacts",
+        0.7055
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0169,
+        "column_classification": 0.0017,
+        "pattern_discovery": 0.1721,
+        "quality_analysis_before": 0.0607,
+        "adaptive_imputation": 0.0778,
+        "noise_and_duplicate_removal": 0.0753,
+        "feature_importance": 0.0276,
+        "dataset_optimizer": 0.017,
+        "model_ready_transform": 0.0294,
+        "quality_analysis_after": 0.0779,
+        "write_csv_artifacts": 0.7055,
+        "report_generation": 0.0354,
+        "total": 1.2974
+      },
+      "rows_after_pipeline": 12480,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "very_wide",
+        "rows": 500,
+        "numeric_columns": 50,
+        "text_columns": 2,
+        "missing_rate": 0.05,
+        "duplicate_rate": 0.01
+      },
+      "dataset_id": "e78d16ae-08b6-4be1-b62f-82c70d8b36a5",
+      "elapsed_seconds": 1.6242,
+      "slowest_stage": [
+        "quality_analysis_after",
+        0.3052
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.055,
+        "column_classification": 0.0007,
+        "pattern_discovery": 0.0557,
+        "quality_analysis_before": 0.2969,
+        "adaptive_imputation": 0.1039,
+        "noise_and_duplicate_removal": 0.2601,
+        "feature_importance": 0.0601,
+        "dataset_optimizer": 0.0305,
+        "model_ready_transform": 0.0859,
+        "quality_analysis_after": 0.3052,
+        "write_csv_artifacts": 0.2656,
+        "report_generation": 0.0236,
+        "total": 1.5433
+      },
+      "rows_after_pipeline": 505,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "all_constant",
+        "rows": 300,
+        "numeric_columns": 10,
+        "text_columns": 2,
+        "missing_rate": 0.01,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "f4c653dc-a785-4f7b-baa1-b039c0252a03",
+      "elapsed_seconds": 0.2306,
+      "slowest_stage": [
+        "quality_analysis_before",
+        0.0361
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0081,
+        "column_classification": 0.0008,
+        "pattern_discovery": 0.0171,
+        "quality_analysis_before": 0.0361,
+        "adaptive_imputation": 0.0128,
+        "noise_and_duplicate_removal": 0.0215,
+        "feature_importance": 0.0083,
+        "dataset_optimizer": 0.003,
+        "model_ready_transform": 0.0043,
+        "quality_analysis_after": 0.0107,
+        "write_csv_artifacts": 0.0106,
+        "report_generation": 0.0218,
+        "total": 0.1551
+      },
+      "rows_after_pipeline": 300,
+      "removed_columns_count": 10
+    },
+    {
+      "dataset": {
+        "name": "extreme_missing",
+        "rows": 1000,
+        "numeric_columns": 8,
+        "text_columns": 3,
+        "missing_rate": 0.95,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "da44c420-ac61-40cf-8103-2634971486ff",
+      "elapsed_seconds": 0.5357,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.3457
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0035,
+        "column_classification": 0.0007,
+        "pattern_discovery": 0.3457,
+        "quality_analysis_before": 0.015,
+        "adaptive_imputation": 0.0112,
+        "noise_and_duplicate_removal": 0.0136,
+        "feature_importance": 0.0052,
+        "dataset_optimizer": 0.0017,
+        "model_ready_transform": 0.0052,
+        "quality_analysis_after": 0.0092,
+        "write_csv_artifacts": 0.0286,
+        "report_generation": 0.0354,
+        "total": 0.4752
+      },
+      "rows_after_pipeline": 1000,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "mixed_types",
+        "rows": 800,
+        "numeric_columns": 6,
+        "text_columns": 2,
+        "missing_rate": 0.1,
+        "duplicate_rate": 0.02
+      },
+      "dataset_id": "ff8eab7d-4333-4c94-8333-cf24f72c5567",
+      "elapsed_seconds": 0.3485,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.1921
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0076,
+        "column_classification": 0.0011,
+        "pattern_discovery": 0.1921,
+        "quality_analysis_before": 0.0077,
+        "adaptive_imputation": 0.0104,
+        "noise_and_duplicate_removal": 0.0132,
+        "feature_importance": 0.0055,
+        "dataset_optimizer": 0.0016,
+        "model_ready_transform": 0.0044,
+        "quality_analysis_after": 0.0074,
+        "write_csv_artifacts": 0.0187,
+        "report_generation": 0.0172,
+        "total": 0.2871
+      },
+      "rows_after_pipeline": 816,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "nested_json",
+        "rows": 600,
+        "numeric_columns": 4,
+        "text_columns": 1,
+        "missing_rate": 0.02,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "f36106f7-b131-4b29-ab26-ea8ef5d63434",
+      "elapsed_seconds": 0.2046,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.0605
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0048,
+        "column_classification": 0.001,
+        "pattern_discovery": 0.0605,
+        "quality_analysis_before": 0.0054,
+        "adaptive_imputation": 0.0033,
+        "noise_and_duplicate_removal": 0.0127,
+        "feature_importance": 0.0048,
+        "dataset_optimizer": 0.0015,
+        "model_ready_transform": 0.0045,
+        "quality_analysis_after": 0.0068,
+        "write_csv_artifacts": 0.0103,
+        "report_generation": 0.026,
+        "total": 0.1416
+      },
+      "rows_after_pipeline": 600,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "heavy_text",
+        "rows": 400,
+        "numeric_columns": 3,
+        "text_columns": 2,
+        "missing_rate": 0.01,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "d64bfc44-4499-4e5c-9e6e-ccb86976892d",
+      "elapsed_seconds": 0.1765,
+      "slowest_stage": [
+        "report_generation",
+        0.0281
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0028,
+        "column_classification": 0.0007,
+        "pattern_discovery": 0.0275,
+        "quality_analysis_before": 0.0043,
+        "adaptive_imputation": 0.0041,
+        "noise_and_duplicate_removal": 0.0115,
+        "feature_importance": 0.005,
+        "dataset_optimizer": 0.002,
+        "model_ready_transform": 0.0043,
+        "quality_analysis_after": 0.0065,
+        "write_csv_artifacts": 0.0133,
+        "report_generation": 0.0281,
+        "total": 0.1102
+      },
+      "rows_after_pipeline": 400,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "extreme_ranges",
+        "rows": 500,
+        "numeric_columns": 6,
+        "text_columns": 1,
+        "missing_rate": 0.01,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "1ac1e308-83f4-42e3-b0ae-257776d957a8",
+      "elapsed_seconds": 0.3798,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.2412
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.005,
+        "column_classification": 0.0016,
+        "pattern_discovery": 0.2412,
+        "quality_analysis_before": 0.008,
+        "adaptive_imputation": 0.004,
+        "noise_and_duplicate_removal": 0.0131,
+        "feature_importance": 0.0029,
+        "dataset_optimizer": 0.0013,
+        "model_ready_transform": 0.0033,
+        "quality_analysis_after": 0.0079,
+        "write_csv_artifacts": 0.0133,
+        "report_generation": 0.019,
+        "total": 0.3207
+      },
+      "rows_after_pipeline": 500,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "datetime_anomalies",
+        "rows": 700,
+        "numeric_columns": 4,
+        "text_columns": 1,
+        "missing_rate": 0.02,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "dcefa2e2-c735-4c16-bee1-8162f47dfdee",
+      "elapsed_seconds": 0.1956,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.0578
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.0031,
+        "column_classification": 0.001,
+        "pattern_discovery": 0.0578,
+        "quality_analysis_before": 0.0069,
+        "adaptive_imputation": 0.0042,
+        "noise_and_duplicate_removal": 0.0137,
+        "feature_importance": 0.0042,
+        "dataset_optimizer": 0.0012,
+        "model_ready_transform": 0.0036,
+        "quality_analysis_after": 0.0063,
+        "write_csv_artifacts": 0.0169,
+        "report_generation": 0.0294,
+        "total": 0.1483
+      },
+      "rows_after_pipeline": 700,
+      "removed_columns_count": 0
+    },
+    {
+      "dataset": {
+        "name": "unicode",
+        "rows": 350,
+        "numeric_columns": 3,
+        "text_columns": 2,
+        "missing_rate": 0.01,
+        "duplicate_rate": 0.0
+      },
+      "dataset_id": "239b7a78-d334-4507-ad8b-6244deb7f5c8",
+      "elapsed_seconds": 0.1907,
+      "slowest_stage": [
+        "pattern_discovery",
+        0.0433
+      ],
+      "missing_artifacts": [],
+      "stage_timings": {
+        "schema_detection": 0.003,
+        "column_classification": 0.0008,
+        "pattern_discovery": 0.0433,
+        "quality_analysis_before": 0.0057,
+        "adaptive_imputation": 0.0069,
+        "noise_and_duplicate_removal": 0.0121,
+        "feature_importance": 0.004,
+        "dataset_optimizer": 0.0011,
+        "model_ready_transform": 0.003,
+        "quality_analysis_after": 0.0047,
+        "write_csv_artifacts": 0.0151,
+        "report_generation": 0.0221,
+        "total": 0.1218
+      },
+      "rows_after_pipeline": 350,
+      "removed_columns_count": 0
+    }
+  ],
+  "slow_stage_counts": {
+    "report_generation": 2,
+    "write_csv_artifacts": 2,
+    "quality_analysis_after": 1,
+    "quality_analysis_before": 1,
+    "pattern_discovery": 6
+  }
+}

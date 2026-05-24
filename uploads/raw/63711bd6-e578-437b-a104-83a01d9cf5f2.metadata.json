@@ -1,0 +1,42 @@
+{
+  "id": "63711bd6-e578-437b-a104-83a01d9cf5f2",
+  "filename": "extreme_missing.csv",
+  "file_path": "C:\\Users\\nithi\\AppData\\Local\\Temp\\tmpu1hao27z.csv",
+  "file_type": "csv",
+  "file_size": 23957,
+  "file_size_mb": 0.02,
+  "rows": 1000,
+  "columns": 12,
+  "column_names": [
+    "row_id",
+    "signal_a",
+    "signal_b",
+    "signal_c",
+    "numeric_1",
+    "numeric_2",
+    "numeric_3",
+    "numeric_4",
+    "numeric_5",
+    "category_1",
+    "category_2",
+    "category_3"
+  ],
+  "column_types": {
+    "row_id": "int64",
+    "signal_a": "float64",
+    "signal_b": "float64",
+    "signal_c": "float64",
+    "numeric_1": "float64",
+    "numeric_2": "float64",
+    "numeric_3": "float64",
+    "numeric_4": "float64",
+    "numeric_5": "float64",
+    "category_1": "object",
+    "category_2": "object",
+    "category_3": "object"
+  },
+  "status": "optimized",
+  "error_message": null,
+  "created_at": "2026-05-24T00:22:58.912593",
+  "updated_at": "2026-05-24T00:22:59.517687"
+}

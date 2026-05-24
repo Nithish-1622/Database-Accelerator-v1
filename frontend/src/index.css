@@ -1,0 +1,64 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #081525;
+  --bg-soft: #102236;
+  --panel: rgba(16, 34, 54, 0.83);
+  --panel-border: rgba(131, 160, 192, 0.2);
+  --text: #deebfb;
+  --text-muted: #8ea8c8;
+  --primary: #0a77c0;
+  --primary-strong: #06578d;
+  --secondary: #26c6a8;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --shadow: 0 24px 70px rgba(2, 6, 23, 0.35);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Bahnschrift', 'Segoe UI', 'Trebuchet MS', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background:
+    radial-gradient(circle at top left, rgba(29, 155, 240, 0.24), transparent 32%),
+    radial-gradient(circle at top right, rgba(38, 198, 168, 0.18), transparent 28%),
+    linear-gradient(180deg, #081525 0%, #0a1d30 48%, #0d2237 100%);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+.button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+  transform: none !important;
+}

@@ -1,0 +1,20 @@
+{
+  "id": "0273a974-6a68-4a22-81c5-133e973997db",
+  "filename": "dirty_data.csv.xlsx",
+  "file_path": "K:\\Database-Accelerator-v1\\uploads\\raw\\0273a974-6a68-4a22-81c5-133e973997db_dirty_data.csv.xlsx",
+  "file_type": "xlsx",
+  "file_size": 9697,
+  "file_size_mb": 0.01,
+  "rows": 26,
+  "columns": 1,
+  "column_names": [
+    "EmployeeID,TempID,SessionHash,Token,Name,Age,Gender,Department,Experience,Salary,City,Email,JoinDate,PerformanceScore,Remarks,RandomCode,UnusedField"
+  ],
+  "column_types": {
+    "EmployeeID,TempID,SessionHash,Token,Name,Age,Gender,Department,Experience,Salary,City,Email,JoinDate,PerformanceScore,Remarks,RandomCode,UnusedField": "string"
+  },
+  "status": "processed",
+  "error_message": null,
+  "created_at": "2026-05-23T16:41:40.743488",
+  "updated_at": "2026-05-23T16:41:53.843707"
+}

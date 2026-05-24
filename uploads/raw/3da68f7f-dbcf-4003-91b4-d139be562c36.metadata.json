@@ -1,0 +1,32 @@
+{
+  "id": "3da68f7f-dbcf-4003-91b4-d139be562c36",
+  "filename": "unicode.csv",
+  "file_path": "C:\\Users\\nithi\\AppData\\Local\\Temp\\tmpwszpyh2p.csv",
+  "file_type": "csv",
+  "file_size": 32331,
+  "file_size_mb": 0.03,
+  "rows": 350,
+  "columns": 7,
+  "column_names": [
+    "row_id",
+    "signal_a",
+    "signal_b",
+    "signal_c",
+    "category_1",
+    "category_2",
+    "unicode_col"
+  ],
+  "column_types": {
+    "row_id": "int64",
+    "signal_a": "float64",
+    "signal_b": "float64",
+    "signal_c": "float64",
+    "category_1": "object",
+    "category_2": "object",
+    "unicode_col": "object"
+  },
+  "status": "optimized",
+  "error_message": null,
+  "created_at": "2026-05-24T00:25:01.502888",
+  "updated_at": "2026-05-24T00:25:01.703957"
+}
