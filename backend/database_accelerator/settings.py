@@ -33,10 +33,33 @@ TEMPLATES = []
 
 WSGI_APPLICATION = 'database_accelerator.wsgi.application'
 
-# Filesystem-based storage - No database
-DATABASES = {}
+def _database_config_from_env():
+    engine = os.getenv('DB_ENGINE', 'django.db.backends.postgresql')
+    name = os.getenv('DB_NAME', 'database_accelerator')
+    user = os.getenv('DB_USER', 'database_accelerator')
+    password = os.getenv('DB_PASSWORD', 'database_accelerator')
+    host = os.getenv('DB_HOST', 'localhost')
+    port = os.getenv('DB_PORT', '5432')
 
-# No authentication - filesystem-based storage
+    return {
+        'default': {
+            'ENGINE': engine,
+            'NAME': name,
+            'USER': user,
+            'PASSWORD': password,
+            'HOST': host,
+            'PORT': port,
+            'CONN_MAX_AGE': 60,
+            'OPTIONS': {
+                'sslmode': os.getenv('DB_SSLMODE', 'prefer'),
+            },
+        }
+    }
+
+
+DATABASES = _database_config_from_env()
+
+# Metadata and operational state are stored in PostgreSQL; large dataset files remain on disk.
 
 LANGUAGE_CODE = 'en-us'
 

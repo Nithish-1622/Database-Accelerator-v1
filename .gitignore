@@ -58,3 +58,7 @@ Thumbs.db
 !/exports/.gitkeep
 !/reports/.gitkeep
 !/samples/.gitkeep
+
+*.md
+.env
+.env.example
