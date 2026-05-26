@@ -10,6 +10,13 @@ const phases = [
   'Cluster',
 ]
 
+const loadingStages = [
+  { key: 'transcription', label: 'Transcription' },
+  { key: 'keywords', label: 'Keyword Extraction' },
+  { key: 'frequency', label: 'Frequency Mapping' },
+  { key: 'clustering', label: 'Clustering' },
+]
+
 export default function AudioPage() {
   const [file, setFile] = useState(null)
   const [audioId, setAudioId] = useState(null)
@@ -20,6 +27,10 @@ export default function AudioPage() {
   const [isRunning, setIsRunning] = useState(false)
   const [message, setMessage] = useState('Upload an audio file to generate transcript, keywords, and clusters automatically.')
   const [error, setError] = useState('')
+  const [showLoader, setShowLoader] = useState(false)
+  const [activeStage, setActiveStage] = useState('')
+  const [completedStages, setCompletedStages] = useState([])
+  const [loaderCaptions, setLoaderCaptions] = useState([])
 
   const handleFile = (e) => setFile(e.target.files?.[0] || null)
 
@@ -37,29 +48,67 @@ export default function AudioPage() {
       .sort((a, b) => b.count - a.count)
   }, [histogram])
 
+  const summaryStats = useMemo(() => {
+    const transcriptWords = transcript.trim() ? transcript.trim().split(/\s+/).length : 0
+    return [
+      { label: 'Transcript Words', value: transcriptWords },
+      { label: 'Keywords', value: keywords.length },
+      { label: 'Distinct Frequency Terms', value: frequencyRows.length },
+      { label: 'Clusters', value: clusters?.clusters?.length || 0 },
+    ]
+  }, [transcript, keywords.length, frequencyRows.length, clusters])
+
+  const beginLoader = () => {
+    setShowLoader(true)
+    setActiveStage('transcription')
+    setCompletedStages([])
+    setLoaderCaptions([])
+  }
+
+  const markStageDone = (stageKey, caption) => {
+    setCompletedStages((prev) => (prev.includes(stageKey) ? prev : [...prev, stageKey]))
+    if (caption) {
+      setLoaderCaptions((prev) => [...prev, caption])
+    }
+  }
+
   const runPipeline = async (uploadedAudioId) => {
     setIsRunning(true)
     setError('')
+    beginLoader()
     try {
+      setActiveStage('transcription')
       setMessage('Transcribing audio automatically...')
       const transcriptRes = await audioService.postTranscription({ audio_id: uploadedAudioId })
       const transcriptText = transcriptRes?.transcript || transcriptRes?.text || ''
       setTranscript(transcriptText)
+      markStageDone('transcription', 'Transcription is done.')
 
-      setMessage('Extracting keywords and frequencies...')
+      setActiveStage('keywords')
+      setMessage('Extracting keywords...')
       const extracted = await audioService.extractKeywords({ audio_id: uploadedAudioId, text: transcriptText })
+      markStageDone('keywords', 'Keywords have been extracted.')
+
+      setActiveStage('frequency')
+      setMessage('Mapping frequencies...')
       const freq = await audioService.computeFrequencies(uploadedAudioId, 50)
       setKeywords(extracted.keywords || [])
       setHistogram(freq.histogram || {})
+      markStageDone('frequency', 'Frequency mapping completed.')
 
+      setActiveStage('clustering')
       setMessage('Running clustering...')
       const clusterRes = await audioService.runClustering({ audio_id: uploadedAudioId, n_clusters: 3 })
       setClusters(clusterRes)
+      markStageDone('clustering', 'Clustering completed.')
 
       setMessage('Audio pipeline complete. Transcript, keyword analytics, and clustering are ready.')
+      setActiveStage('')
+      setTimeout(() => setShowLoader(false), 500)
     } catch (err) {
       setError(err?.response?.data?.error || err?.message || 'Pipeline failed')
       setMessage('Pipeline stopped. Check the error and retry.')
+      setShowLoader(false)
     } finally {
       setIsRunning(false)
     }
@@ -115,7 +164,67 @@ export default function AudioPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-800 text-slate-100 p-6 md:p-10">
+    <div className="relative min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(56,189,248,0.18),_transparent_35%),radial-gradient(circle_at_bottom_right,_rgba(34,197,94,0.16),_transparent_30%),linear-gradient(135deg,#020617,#0f172a,#1e293b)] text-slate-100 p-6 md:p-10">
+      {showLoader && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/80 p-4 backdrop-blur-sm">
+          <div className="w-full max-w-2xl rounded-3xl border border-cyan-300/20 bg-slate-900/95 p-6 shadow-2xl">
+            <div className="flex items-center gap-4">
+              <div className="relative h-16 w-16">
+                <div className="absolute inset-0 rounded-full border-4 border-cyan-200/20" />
+                <div className="absolute inset-0 animate-spin rounded-full border-4 border-transparent border-t-cyan-300 border-r-cyan-400" />
+                <div className="absolute inset-3 animate-pulse rounded-full bg-cyan-300/20" />
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-white">Processing Your Audio</h3>
+                <p className="mt-1 text-sm text-slate-300">{message}</p>
+              </div>
+            </div>
+
+            <div className="mt-6 grid gap-3 sm:grid-cols-2">
+              {loadingStages.map((stage) => {
+                const isDone = completedStages.includes(stage.key)
+                const isActive = activeStage === stage.key
+                return (
+                  <div
+                    key={stage.key}
+                    className={`rounded-2xl border px-4 py-3 text-sm transition ${
+                      isDone
+                        ? 'border-emerald-300/40 bg-emerald-400/15 text-emerald-100'
+                        : isActive
+                          ? 'border-cyan-300/40 bg-cyan-400/15 text-cyan-100'
+                          : 'border-white/10 bg-white/5 text-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="font-medium">{stage.label}</span>
+                      <span className="text-xs uppercase tracking-[0.15em]">
+                        {isDone ? 'Done' : isActive ? 'Running' : 'Queued'}
+                      </span>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-slate-400">Live Captions</p>
+              <div className="mt-3 space-y-2 text-sm text-slate-200">
+                {loaderCaptions.length > 0 ? (
+                  loaderCaptions.map((caption, idx) => (
+                    <p key={`${caption}-${idx}`} className="flex items-center gap-2">
+                      <span className="h-2 w-2 rounded-full bg-emerald-300" />
+                      {caption}
+                    </p>
+                  ))
+                ) : (
+                  <p className="text-slate-400">Initializing pipeline...</p>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="mx-auto max-w-7xl space-y-6">
         <section className="rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -132,6 +241,15 @@ export default function AudioPage() {
               <div className="font-medium">Status</div>
               <div className="mt-1 max-w-sm">{message}</div>
             </div>
+          </div>
+
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {summaryStats.map((stat) => (
+              <div key={stat.label} className="rounded-2xl border border-white/10 bg-slate-950/40 px-4 py-3">
+                <p className="text-xs uppercase tracking-[0.14em] text-slate-400">{stat.label}</p>
+                <p className="mt-1 text-2xl font-semibold text-white">{stat.value}</p>
+              </div>
+            ))}
           </div>
         </section>
 
@@ -265,7 +383,7 @@ export default function AudioPage() {
               <tbody>
                 {frequencyRows.length > 0 ? (
                   frequencyRows.map((row) => (
-                    <tr key={row.word} className="border-t border-white/10">
+                    <tr key={row.word} className="border-t border-white/10 even:bg-white/5">
                       <td className="px-4 py-3 font-medium text-white">{row.word}</td>
                       <td className="px-4 py-3">{row.count}</td>
                     </tr>
