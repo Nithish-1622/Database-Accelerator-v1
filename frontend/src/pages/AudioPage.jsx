@@ -31,13 +31,19 @@ export default function AudioPage() {
     }))
   }, [audioId])
 
+  const frequencyRows = useMemo(() => {
+    return Object.entries(histogram || {})
+      .map(([word, count]) => ({ word, count: Number(count) || 0 }))
+      .sort((a, b) => b.count - a.count)
+  }, [histogram])
+
   const runPipeline = async (uploadedAudioId) => {
     setIsRunning(true)
     setError('')
     try {
       setMessage('Transcribing audio automatically...')
       const transcriptRes = await audioService.postTranscription({ audio_id: uploadedAudioId })
-      const transcriptText = transcriptRes.transcript?.transcript || ''
+      const transcriptText = transcriptRes?.transcript || transcriptRes?.text || ''
       setTranscript(transcriptText)
 
       setMessage('Extracting keywords and frequencies...')
@@ -242,6 +248,37 @@ export default function AudioPage() {
                 </div>
               )}
             </div>
+          </div>
+        </section>
+
+        <section className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
+          <h3 className="text-lg font-semibold text-white">Word Frequency Table</h3>
+          <p className="mt-1 text-sm text-slate-400">Sorted frequency counts generated from the backend analytics response.</p>
+          <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-900/80">
+            <table className="min-w-full text-left text-sm text-slate-200">
+              <thead className="bg-white/5 text-xs uppercase tracking-[0.15em] text-slate-400">
+                <tr>
+                  <th className="px-4 py-3">Word</th>
+                  <th className="px-4 py-3">Frequency</th>
+                </tr>
+              </thead>
+              <tbody>
+                {frequencyRows.length > 0 ? (
+                  frequencyRows.map((row) => (
+                    <tr key={row.word} className="border-t border-white/10">
+                      <td className="px-4 py-3 font-medium text-white">{row.word}</td>
+                      <td className="px-4 py-3">{row.count}</td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td className="px-4 py-4 text-slate-400" colSpan={2}>
+                      No frequency data yet. Upload and process audio to populate this table.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </section>
 

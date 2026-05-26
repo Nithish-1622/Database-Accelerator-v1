@@ -4,6 +4,8 @@ import re
 from pathlib import Path
 from typing import Iterable, List, Optional
 
+from functools import lru_cache
+
 try:
     import whisper  # type: ignore
 except Exception:  # pragma: no cover - optional dependency
@@ -19,13 +21,7 @@ class WhisperTranscriber:
         if whisper is None:
             return None
 
-        try:
-            return whisper.load_model(self.model_name)
-        except Exception:
-            try:
-                return whisper.load_model(self.fallback_model_name)
-            except Exception:
-                return None
+        return _get_cached_model(self.model_name, self.fallback_model_name)
 
     def _fallback_transcript(self, audio_path: str) -> dict:
         stem = Path(audio_path).stem
@@ -76,3 +72,17 @@ class WhisperTranscriber:
                 **self.audio_to_text(str(segment_path), transcript_override=transcript_override),
             })
         return transcripts
+
+
+@lru_cache(maxsize=4)
+def _get_cached_model(model_name: str, fallback_model_name: str):
+    if whisper is None:
+        return None
+
+    try:
+        return whisper.load_model(model_name)
+    except Exception:
+        try:
+            return whisper.load_model(fallback_model_name)
+        except Exception:
+            return None
