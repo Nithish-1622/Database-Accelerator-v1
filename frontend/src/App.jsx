@@ -5,6 +5,7 @@ import UploadPage from './pages/UploadPage'
 import DatasetPage from './pages/DatasetPage'
 import BenchmarkPage from './pages/BenchmarkPage'
 import ArtifactPage from './pages/ArtifactPage'
+import AudioPage from './pages/AudioPage'
 import './App.css'
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="/datasets" element={<DatasetPage />} />
+          <Route path="/audio" element={<AudioPage />} />
           <Route path="/benchmark" element={<BenchmarkPage />} />
           <Route path="/artifacts" element={<ArtifactPage />} />
         </Routes>

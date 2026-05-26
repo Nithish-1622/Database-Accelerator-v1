@@ -5,7 +5,15 @@ from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-load_dotenv(BASE_DIR / '.env')
+ENV_PATHS = [
+    BASE_DIR / 'backend' / '.env',
+    BASE_DIR / '.env',
+]
+
+for env_path in ENV_PATHS:
+    if env_path.exists():
+        load_dotenv(env_path, override=False)
+        break
 
 SECRET_KEY = 'django-insecure-development-key-change-in-production'
 
@@ -18,6 +26,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'database_accelerator.apps.api_gateway',
     'database_accelerator.apps.upload_module',
+    'database_accelerator.apps.audio_dataset_engine.apps.AudioDatasetEngineConfig',
     'database_accelerator.apps.analysis_module',
     'database_accelerator.apps.preprocessing_module',
     'database_accelerator.apps.intelligence_module',
@@ -74,8 +83,25 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+AUDIO_UPLOAD_MAX_SIZE_MB = int(os.getenv('AUDIO_UPLOAD_MAX_SIZE_MB', '100'))
+AUDIO_UPLOAD_MAX_SIZE_BYTES = AUDIO_UPLOAD_MAX_SIZE_MB * 1024 * 1024
+AUDIO_UPLOAD_ALLOWED_EXTENSIONS = {'.wav', '.mp3', '.flac', '.m4a'}
+AUDIO_UPLOAD_ALLOWED_CONTENT_TYPES = {
+    'audio/wav',
+    'audio/x-wav',
+    'audio/mpeg',
+    'audio/mp3',
+    'audio/flac',
+    'audio/x-flac',
+    'audio/mp4',
+    'audio/x-m4a',
+    'audio/m4a',
+}
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
@@ -118,6 +144,8 @@ REPORT_INTELLIGENCE_DIR = os.path.join(REPORT_DIR, 'intelligence_reports')
 for directory in [
     UPLOAD_RAW_DIR, UPLOAD_PROCESSED_DIR, UPLOAD_TEMP_DIR, UPLOAD_FAILED_DIR,
     EXPORT_CLEANED_CSV_DIR, EXPORT_JSON_REPORTS_DIR, EXPORT_LOGS_DIR,
-    REPORT_HEALTH_DIR, REPORT_CLEANING_DIR, REPORT_INTELLIGENCE_DIR
+    REPORT_HEALTH_DIR, REPORT_CLEANING_DIR, REPORT_INTELLIGENCE_DIR,
+    MEDIA_ROOT,
+    os.path.join(MEDIA_ROOT, 'audio'),
 ]:
     os.makedirs(directory, exist_ok=True)

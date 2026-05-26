@@ -59,6 +59,7 @@ function DashboardPage() {
           <Link to="/upload" className="button button-primary">Open Upload</Link>
           <Link to="/benchmark" className="button button-secondary">Benchmark</Link>
           <Link to="/artifacts" className="button button-secondary button-secondary--ghost">Artifacts</Link>
+          <Link to='/audio' className="button button-secondary button-secondary--ghost">Audio-Engine</Link>
         </div>
       </header>
 
