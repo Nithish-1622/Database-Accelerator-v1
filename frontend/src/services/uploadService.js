@@ -1,6 +1,20 @@
 import axios from 'axios'
 
-export const API_BASE_URL = 'http://localhost:8000/api'
+const resolveApiBaseUrl = () => {
+  const configured = import.meta.env.VITE_API_BASE_URL
+  if (configured) return configured
+
+  if (typeof window !== 'undefined') {
+    const hostname = window.location.hostname
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+      return 'http://localhost:8000/api'
+    }
+  }
+
+  return '/api'
+}
+
+export const API_BASE_URL = resolveApiBaseUrl()
 
 const client = axios.create({
   baseURL: API_BASE_URL,
