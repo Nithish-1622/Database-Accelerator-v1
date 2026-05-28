@@ -11,7 +11,7 @@ const resolveApiBaseUrl = () => {
     }
   }
 
-  return '/api'
+  return '/_/backend/api'
 }
 
 export const API_BASE_URL = resolveApiBaseUrl()

@@ -1,33 +1,13 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+  "experimentalServices": {
+    "frontend": {
+      "root": "frontend",
+      "routePrefix": "/",
+      "framework": "vite"
     },
-    {
-      "src": "api/index.py",
-      "use": "@vercel/python"
+    "backend": {
+      "root": "backend",
+      "routePrefix": "/_/backend"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "/api/index.py"
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
-  ],
-  "env": {
-    "DJANGO_SETTINGS_MODULE": "database_accelerator.settings",
-    "VITE_API_BASE_URL": "/api"
   }
 }
