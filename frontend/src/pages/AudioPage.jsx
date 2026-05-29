@@ -24,7 +24,6 @@ export default function AudioPage() {
   const [keywords, setKeywords] = useState([])
   const [histogram, setHistogram] = useState({})
   const [clusters, setClusters] = useState(null)
-  const [selectedAlgorithm, setSelectedAlgorithm] = useState('')
   const [isRunning, setIsRunning] = useState(false)
   const [message, setMessage] = useState('Upload an audio file to generate transcript, keywords, and clusters automatically.')
   const [error, setError] = useState('')
@@ -59,7 +58,8 @@ export default function AudioPage() {
   }, [keywords])
 
   const clusterPieData = useMemo(() => {
-    const labels = clusters?.results?.[selectedAlgorithm]?.labels || clusters?.labels || {}
+    const algo = clusters?.recommended?.algorithm || 'kmeans'
+    const labels = clusters?.results?.[algo]?.labels || clusters?.labels || {}
     const counts = Object.values(labels).reduce((acc, label) => {
       const key = label === -1 ? 'Noise' : `Cluster ${label + 1}`
       acc[key] = (acc[key] || 0) + 1
@@ -71,20 +71,51 @@ export default function AudioPage() {
 
   const summaryStats = useMemo(() => {
     const transcriptWords = transcript.trim() ? transcript.trim().split(/\s+/).length : 0
-    const selectedResult = clusters?.results?.[selectedAlgorithm]
-    const clusterCount = selectedResult?.metrics?.cluster_count ?? clusters?.clusters?.length ?? 0
+    const recommended = clusters?.recommended?.algorithm
+    const clusterCount = clusters?.results?.[recommended]?.metrics?.cluster_count ?? clusters?.clusters?.length ?? 0
     return [
       { label: 'Transcript Words', value: transcriptWords },
       { label: 'Keywords', value: keywords.length },
       { label: 'Distinct Frequency Terms', value: frequencyRows.length },
       { label: 'Clusters', value: clusterCount },
     ]
-  }, [transcript, keywords.length, frequencyRows.length, clusters, selectedAlgorithm])
+  }, [transcript, keywords.length, frequencyRows.length, clusters])
 
   const clusteringResults = useMemo(() => clusters?.results || {}, [clusters])
   const clusteringKeys = useMemo(() => Object.keys(clusteringResults), [clusteringResults])
   const recommendedAlgo = clusters?.recommended?.algorithm || ''
-  const selectedResult = selectedAlgorithm && clusteringResults[selectedAlgorithm]
+
+  const comparisonRows = useMemo(() => {
+    return clusteringKeys.map((key) => {
+      const result = clusteringResults[key] || {}
+      const metrics = result.metrics || {}
+      return {
+        algorithm: key,
+        silhouette: metrics.silhouette,
+        davies: metrics.davies_bouldin,
+        calinski: metrics.calinski_harabasz,
+        elapsed: result.elapsed_ms,
+        memoryDelta: metrics.memory_delta_mb,
+        memoryRss: metrics.memory_rss_mb,
+        clusterCount: metrics.cluster_count,
+      }
+    })
+  }, [clusteringKeys, clusteringResults])
+
+  const metricMax = useMemo(() => {
+    const max = (items, key) => {
+      return items.reduce((acc, row) => {
+        const val = Number(row[key])
+        return Number.isFinite(val) ? Math.max(acc, val) : acc
+      }, 0)
+    }
+    return {
+      silhouette: max(comparisonRows, 'silhouette'),
+      calinski: max(comparisonRows, 'calinski'),
+      elapsed: max(comparisonRows, 'elapsed'),
+      memoryDelta: max(comparisonRows, 'memoryDelta'),
+    }
+  }, [comparisonRows])
 
   const beginLoader = () => {
     setShowLoader(true)
@@ -134,14 +165,6 @@ export default function AudioPage() {
         min_samples: 2,
       })
       setClusters(clusterRes)
-      if (clusterRes?.recommended?.algorithm) {
-        setSelectedAlgorithm(clusterRes.recommended.algorithm)
-      } else if (clusterRes?.results) {
-        const firstKey = Object.keys(clusterRes.results)[0]
-        setSelectedAlgorithm(firstKey || '')
-      } else {
-        setSelectedAlgorithm('')
-      }
       markStageDone('clustering', 'Clustering completed.')
 
       setMessage('Audio pipeline complete. Transcript, keyword analytics, and clustering are ready.')
@@ -478,55 +501,100 @@ export default function AudioPage() {
               Recommended algorithm: <span className="font-semibold">{recommendedAlgo}</span>
             </div>
           )}
-          {clusteringKeys.length > 0 && (
-            <div className="mt-4 flex flex-wrap items-center gap-3">
-              <label className="text-sm text-slate-400">Select algorithm</label>
-              <select
-                className="rounded-2xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-slate-100"
-                value={selectedAlgorithm}
-                onChange={(e) => setSelectedAlgorithm(e.target.value)}
-              >
-                {clusteringKeys.map((key) => (
-                  <option key={key} value={key}>{key}</option>
-                ))}
-              </select>
-            </div>
-          )}
-          {selectedResult?.metrics && (
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Silhouette</div>
-                <div className="mt-1 text-lg font-semibold text-white">
-                  {selectedResult.metrics.silhouette ?? 'n/a'}
+          {comparisonRows.length > 0 && (
+            <div className="mt-4 space-y-4">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Silhouette</div>
+                  <div className="mt-1 text-lg font-semibold text-white">Higher is better</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Davies-Bouldin</div>
+                  <div className="mt-1 text-lg font-semibold text-white">Lower is better</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Calinski-Harabasz</div>
+                  <div className="mt-1 text-lg font-semibold text-white">Higher is better</div>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                  <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Memory Delta (MB)</div>
+                  <div className="mt-1 text-lg font-semibold text-white">Lower is better</div>
                 </div>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Davies-Bouldin</div>
-                <div className="mt-1 text-lg font-semibold text-white">
-                  {selectedResult.metrics.davies_bouldin ?? 'n/a'}
-                </div>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Calinski-Harabasz</div>
-                <div className="mt-1 text-lg font-semibold text-white">
-                  {selectedResult.metrics.calinski_harabasz ?? 'n/a'}
-                </div>
-              </div>
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
-                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Elapsed (ms)</div>
-                <div className="mt-1 text-lg font-semibold text-white">
-                  {selectedResult.elapsed_ms ?? 'n/a'}
-                </div>
+
+              <div className="overflow-auto rounded-2xl border border-white/10 bg-slate-900/80">
+                <table className="min-w-full text-left text-sm text-slate-200">
+                  <thead className="bg-white/5 text-xs uppercase tracking-[0.15em] text-slate-400">
+                    <tr>
+                      <th className="px-4 py-3">Algorithm</th>
+                      <th className="px-4 py-3">Silhouette</th>
+                      <th className="px-4 py-3">Davies-Bouldin</th>
+                      <th className="px-4 py-3">Calinski-Harabasz</th>
+                      <th className="px-4 py-3">Time (ms)</th>
+                      <th className="px-4 py-3">Memory Δ (MB)</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {comparisonRows.map((row) => (
+                      <tr key={row.algorithm} className="border-t border-white/10 even:bg-white/5">
+                        <td className="px-4 py-3 font-medium text-white">{row.algorithm}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="h-2 w-24 rounded-full bg-white/10">
+                              <div
+                                className="h-2 rounded-full bg-emerald-400"
+                                style={{ width: `${metricMax.silhouette ? Math.min(100, (row.silhouette || 0) / metricMax.silhouette * 100) : 0}%` }}
+                              />
+                            </div>
+                            <span>{row.silhouette ?? 'n/a'}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3">{row.davies ?? 'n/a'}</td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="h-2 w-24 rounded-full bg-white/10">
+                              <div
+                                className="h-2 rounded-full bg-cyan-400"
+                                style={{ width: `${metricMax.calinski ? Math.min(100, (row.calinski || 0) / metricMax.calinski * 100) : 0}%` }}
+                              />
+                            </div>
+                            <span>{row.calinski ?? 'n/a'}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="h-2 w-24 rounded-full bg-white/10">
+                              <div
+                                className="h-2 rounded-full bg-fuchsia-400"
+                                style={{ width: `${metricMax.elapsed ? Math.min(100, (row.elapsed || 0) / metricMax.elapsed * 100) : 0}%` }}
+                              />
+                            </div>
+                            <span>{row.elapsed ?? 'n/a'}</span>
+                          </div>
+                        </td>
+                        <td className="px-4 py-3">
+                          <div className="flex items-center gap-2">
+                            <div className="h-2 w-24 rounded-full bg-white/10">
+                              <div
+                                className="h-2 rounded-full bg-amber-400"
+                                style={{ width: `${metricMax.memoryDelta ? Math.min(100, (row.memoryDelta || 0) / metricMax.memoryDelta * 100) : 0}%` }}
+                              />
+                            </div>
+                            <span>{row.memoryDelta ?? 'n/a'}</span>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
           )}
           <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-900/80 p-4 text-sm text-slate-200">
             <pre className="whitespace-pre-wrap">
-              {selectedResult
-                ? JSON.stringify(selectedResult, null, 2)
-                : clusters
-                  ? JSON.stringify(clusters, null, 2)
-                  : 'Cluster results will appear here after the pipeline completes.'}
+              {clusters
+                ? JSON.stringify(clusters, null, 2)
+                : 'Cluster results will appear here after the pipeline completes.'}
             </pre>
           </div>
         </section>

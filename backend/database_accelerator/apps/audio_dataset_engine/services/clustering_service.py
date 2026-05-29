@@ -21,6 +21,11 @@ try:
 except Exception:
     silhouette_score = davies_bouldin_score = calinski_harabasz_score = None
 
+try:
+    import psutil
+except Exception:
+    psutil = None
+
 
 class ClusteringService:
     @staticmethod
@@ -145,6 +150,7 @@ class ClusteringService:
         eps: float = 0.5,
         min_samples: int = 2,
     ) -> dict:
+        rss_before = ClusteringService._get_rss_mb()
         start = time.perf_counter()
         try:
             if algorithm == 'kmeans':
@@ -168,7 +174,14 @@ class ClusteringService:
             return {'success': False, 'message': str(e)}
 
         elapsed_ms = round((time.perf_counter() - start) * 1000, 2)
-        metrics = ClusteringService._compute_metrics(keyword_counts, labels)
+        rss_after = ClusteringService._get_rss_mb()
+        memory_delta = None
+        if rss_before is not None and rss_after is not None:
+            memory_delta = round(rss_after - rss_before, 4)
+
+        metrics = ClusteringService._compute_metrics(keyword_counts, labels) or {}
+        metrics['memory_rss_mb'] = rss_after
+        metrics['memory_delta_mb'] = memory_delta
         return {
             'success': True,
             'labels': labels,
@@ -231,3 +244,13 @@ class ClusteringService:
         if davies is not None:
             return -davies
         return None
+
+    @staticmethod
+    def _get_rss_mb() -> Optional[float]:
+        if psutil is None:
+            return None
+        try:
+            rss = psutil.Process().memory_info().rss
+            return round(rss / (1024 * 1024), 4)
+        except Exception:
+            return None
