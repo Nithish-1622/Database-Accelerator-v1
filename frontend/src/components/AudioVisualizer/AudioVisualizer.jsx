@@ -1,5 +1,5 @@
 import React from 'react'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, Legend } from 'recharts'
 
 const COLORS = ['#4e79a7', '#f28e2b', '#e15759', '#76b7b2', '#59a14f', '#edc949']
 
@@ -22,6 +22,26 @@ export default function AudioVisualizer({ type='bar', data }) {
           </Pie>
           <Tooltip />
         </PieChart>
+      </ResponsiveContainer>
+    )
+  }
+
+  if (type === 'line') {
+    return (
+      <ResponsiveContainer width="100%" height={300}>
+        <LineChart data={arr} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
+          <CartesianGrid stroke="#1f2937" strokeDasharray="3 3" />
+          <XAxis dataKey="name" />
+          <YAxis />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="overall" stroke="#f59e0b" strokeWidth={2} />
+          <Line type="monotone" dataKey="silhouette" stroke="#34d399" strokeWidth={1.5} />
+          <Line type="monotone" dataKey="calinski" stroke="#22d3ee" strokeWidth={1.5} />
+          <Line type="monotone" dataKey="davies" stroke="#f87171" strokeWidth={1.5} />
+          <Line type="monotone" dataKey="elapsed" stroke="#d946ef" strokeWidth={1.5} />
+          <Line type="monotone" dataKey="memory" stroke="#fbbf24" strokeWidth={1.5} />
+        </LineChart>
       </ResponsiveContainer>
     )
   }

@@ -111,11 +111,76 @@ export default function AudioPage() {
     }
     return {
       silhouette: max(comparisonRows, 'silhouette'),
+      davies: max(comparisonRows, 'davies'),
       calinski: max(comparisonRows, 'calinski'),
       elapsed: max(comparisonRows, 'elapsed'),
       memoryDelta: max(comparisonRows, 'memoryDelta'),
     }
   }, [comparisonRows])
+
+  const comparisonChartData = useMemo(() => {
+    return comparisonRows.map((row) => ({
+      name: row.algorithm,
+      silhouette: Number(row.silhouette) || 0,
+      calinski: Number(row.calinski) || 0,
+      davies: Number(row.davies) || 0,
+      elapsed: Number(row.elapsed) || 0,
+      memory: Number(row.memoryDelta) || 0,
+      isRecommended: row.algorithm === recommendedAlgo,
+    }))
+  }, [comparisonRows, recommendedAlgo])
+
+  const overallScores = useMemo(() => {
+    const normalize = (value, max, inverse = false) => {
+      if (!max) return 0
+      const ratio = Math.max(0, Math.min(1, value / max))
+      return inverse ? 1 - ratio : ratio
+    }
+
+    const scores = comparisonRows.map((row) => {
+      const silhouette = normalize(Number(row.silhouette) || 0, metricMax.silhouette)
+      const calinski = normalize(Number(row.calinski) || 0, metricMax.calinski)
+      const davies = normalize(Number(row.davies) || 0, metricMax.davies, true)
+      const elapsed = normalize(Number(row.elapsed) || 0, metricMax.elapsed, true)
+      const memory = normalize(Number(row.memoryDelta) || 0, metricMax.memoryDelta, true)
+
+      const score = (
+        silhouette * 0.35 +
+        calinski * 0.2 +
+        davies * 0.2 +
+        elapsed * 0.15 +
+        memory * 0.1
+      )
+
+      return {
+        algorithm: row.algorithm,
+        score: Number.isFinite(score) ? Number(score.toFixed(3)) : 0,
+      }
+    })
+
+    const best = scores.reduce((acc, row) => (row.score > acc.score ? row : acc), { algorithm: '', score: -1 })
+    return {
+      scores,
+      bestAlgorithm: best.algorithm,
+      bestScore: best.score,
+    }
+  }, [comparisonRows, metricMax])
+
+  const performanceLineData = useMemo(() => {
+    const scoreMap = overallScores.scores.reduce((acc, row) => {
+      acc[row.algorithm] = row.score
+      return acc
+    }, {})
+    return comparisonRows.map((row) => ({
+      name: row.algorithm,
+      silhouette: Number(row.silhouette) || 0,
+      calinski: Number(row.calinski) || 0,
+      davies: Number(row.davies) || 0,
+      elapsed: Number(row.elapsed) || 0,
+      memory: Number(row.memoryDelta) || 0,
+      overall: scoreMap[row.algorithm] || 0,
+    }))
+  }, [comparisonRows, overallScores])
 
   const beginLoader = () => {
     setShowLoader(true)
@@ -503,6 +568,69 @@ export default function AudioPage() {
           )}
           {comparisonRows.length > 0 && (
             <div className="mt-4 space-y-4">
+              <div className="rounded-3xl border border-white/10 bg-slate-950/70 p-5">
+                <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                  <div>
+                    <h4 className="text-base font-semibold text-white">Performance Comparison</h4>
+                    <p className="text-sm text-slate-400">Side-by-side view of clustering quality, speed, and memory.</p>
+                  </div>
+                  {recommendedAlgo && (
+                    <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-100">
+                      Best: {recommendedAlgo}
+                    </span>
+                  )}
+                </div>
+
+                <div className="mt-4 grid gap-4 md:grid-cols-2">
+                  {comparisonChartData.map((row) => (
+                    <div
+                      key={row.name}
+                      className={`rounded-2xl border px-4 py-3 text-sm ${
+                        row.isRecommended
+                          ? 'border-emerald-400/40 bg-emerald-400/10'
+                          : 'border-white/10 bg-white/5'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-semibold text-white">{row.name}</span>
+                        {row.isRecommended && (
+                          <span className="text-xs uppercase tracking-[0.16em] text-emerald-200">Recommended</span>
+                        )}
+                      </div>
+                      {overallScores.bestAlgorithm === row.name && (
+                        <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-100">
+                          Best performer · Score {overallScores.bestScore}
+                        </div>
+                      )}
+                      <div className="mt-3 space-y-2">
+                        <MetricBar label="Silhouette" value={row.silhouette} max={metricMax.silhouette} color="bg-emerald-400" higherIsBetter />
+                        <MetricBar label="Calinski" value={row.calinski} max={metricMax.calinski} color="bg-cyan-400" higherIsBetter />
+                        <MetricBar label="Davies-Bouldin" value={row.davies} max={metricMax.davies} color="bg-rose-400" higherIsBetter={false} />
+                        <MetricBar label="Time (ms)" value={row.elapsed} max={metricMax.elapsed} color="bg-fuchsia-400" higherIsBetter={false} />
+                        <MetricBar label="Memory Δ (MB)" value={row.memory} max={metricMax.memoryDelta} color="bg-amber-400" higherIsBetter={false} />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 rounded-3xl border border-white/10 bg-slate-950/60 p-5">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div>
+                      <h4 className="text-base font-semibold text-white">Performance Trend Line</h4>
+                      <p className="text-sm text-slate-400">Compare metrics and overall score across algorithms.</p>
+                    </div>
+                    {overallScores.bestAlgorithm && (
+                      <span className="rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-100">
+                        Best overall: {overallScores.bestAlgorithm}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-4 h-[320px]">
+                    <AudioVisualizer type="line" data={performanceLineData} />
+                  </div>
+                </div>
+              </div>
+
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
                 <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
                   <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Silhouette</div>
@@ -536,8 +664,20 @@ export default function AudioPage() {
                   </thead>
                   <tbody>
                     {comparisonRows.map((row) => (
-                      <tr key={row.algorithm} className="border-t border-white/10 even:bg-white/5">
-                        <td className="px-4 py-3 font-medium text-white">{row.algorithm}</td>
+                      <tr
+                        key={row.algorithm}
+                        className={`border-t border-white/10 even:bg-white/5 ${
+                          overallScores.bestAlgorithm === row.algorithm ? 'bg-amber-400/10' : ''
+                        }`}
+                      >
+                        <td className="px-4 py-3 font-medium text-white">
+                          {row.algorithm}
+                          {overallScores.bestAlgorithm === row.algorithm && (
+                            <span className="ml-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-amber-100">
+                              Best
+                            </span>
+                          )}
+                        </td>
                         <td className="px-4 py-3">
                           <div className="flex items-center gap-2">
                             <div className="h-2 w-24 rounded-full bg-white/10">
@@ -598,6 +738,26 @@ export default function AudioPage() {
             </pre>
           </div>
         </section>
+      </div>
+    </div>
+  )
+}
+
+function MetricBar({ label, value, max, color, higherIsBetter = true }) {
+  const numeric = Number(value)
+  const safeValue = Number.isFinite(numeric) ? numeric : 0
+  const width = max ? Math.min(100, (safeValue / max) * 100) : 0
+  const displayValue = Number.isFinite(numeric) ? numeric.toFixed(3) : 'n/a'
+  const direction = higherIsBetter ? 'Higher' : 'Lower'
+
+  return (
+    <div>
+      <div className="flex items-center justify-between text-xs text-slate-400">
+        <span>{label}</span>
+        <span>{displayValue} · {direction}</span>
+      </div>
+      <div className="mt-1 h-2 w-full rounded-full bg-white/10">
+        <div className={`h-2 rounded-full ${color}`} style={{ width: `${width}%` }} />
       </div>
     </div>
   )
