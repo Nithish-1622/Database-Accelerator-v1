@@ -48,6 +48,26 @@ export default function AudioPage() {
       .sort((a, b) => b.count - a.count)
   }, [histogram])
 
+  const keywordPieData = useMemo(() => {
+    return keywords
+      .slice(0, 8)
+      .map((item) => ({
+        name: item.keyword,
+        value: Number(item.frequency) || 0,
+      }))
+  }, [keywords])
+
+  const clusterPieData = useMemo(() => {
+    const labels = clusters?.labels || {}
+    const counts = Object.values(labels).reduce((acc, label) => {
+      const key = `Cluster ${label + 1}`
+      acc[key] = (acc[key] || 0) + 1
+      return acc
+    }, {})
+
+    return Object.entries(counts).map(([name, value]) => ({ name, value }))
+  }, [clusters])
+
   const summaryStats = useMemo(() => {
     const transcriptWords = transcript.trim() ? transcript.trim().split(/\s+/).length : 0
     return [
@@ -339,16 +359,44 @@ export default function AudioPage() {
           </div>
         </section>
 
-        <section className="grid gap-6 xl:grid-cols-2">
-          <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
-            <div className="flex items-center justify-between gap-4">
-              <div>
-                <h3 className="text-lg font-semibold text-white">Keyword Frequencies</h3>
-                <p className="mt-1 text-sm text-slate-400">Top keyword histogram from the extracted transcript.</p>
+        <section className="grid gap-6 xl:grid-cols-[1.15fr_0.85fr] xl:items-start">
+          <div className="space-y-6">
+            <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <h3 className="text-lg font-semibold text-white">Keyword Frequencies</h3>
+                  <p className="mt-1 text-sm text-slate-400">Top keyword histogram from the extracted transcript.</p>
+                </div>
+              </div>
+              <div className="mt-4 h-[340px]">
+                <AudioVisualizer type="bar" data={histogram} />
               </div>
             </div>
-            <div className="mt-4 h-[340px]">
-              <AudioVisualizer type="bar" data={histogram} />
+
+            <div className="grid gap-6 md:grid-cols-2">
+              <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">Keyword Share</h3>
+                    <p className="mt-1 text-sm text-slate-400">A quick pie view of the top extracted keyword frequencies.</p>
+                  </div>
+                </div>
+                <div className="mt-4 h-[320px]">
+                  <AudioVisualizer type="pie" data={keywordPieData} />
+                </div>
+              </div>
+
+              <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <h3 className="text-lg font-semibold text-white">Cluster Distribution</h3>
+                    <p className="mt-1 text-sm text-slate-400">How extracted keywords were grouped by the backend clustering step.</p>
+                  </div>
+                </div>
+                <div className="mt-4 h-[320px]">
+                  <AudioVisualizer type="pie" data={clusterPieData} />
+                </div>
+              </div>
             </div>
           </div>
 
