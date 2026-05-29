@@ -24,6 +24,7 @@ export default function AudioPage() {
   const [keywords, setKeywords] = useState([])
   const [histogram, setHistogram] = useState({})
   const [clusters, setClusters] = useState(null)
+  const [selectedAlgorithm, setSelectedAlgorithm] = useState('')
   const [isRunning, setIsRunning] = useState(false)
   const [message, setMessage] = useState('Upload an audio file to generate transcript, keywords, and clusters automatically.')
   const [error, setError] = useState('')
@@ -58,9 +59,9 @@ export default function AudioPage() {
   }, [keywords])
 
   const clusterPieData = useMemo(() => {
-    const labels = clusters?.labels || {}
+    const labels = clusters?.results?.[selectedAlgorithm]?.labels || clusters?.labels || {}
     const counts = Object.values(labels).reduce((acc, label) => {
-      const key = `Cluster ${label + 1}`
+      const key = label === -1 ? 'Noise' : `Cluster ${label + 1}`
       acc[key] = (acc[key] || 0) + 1
       return acc
     }, {})
@@ -70,13 +71,20 @@ export default function AudioPage() {
 
   const summaryStats = useMemo(() => {
     const transcriptWords = transcript.trim() ? transcript.trim().split(/\s+/).length : 0
+    const selectedResult = clusters?.results?.[selectedAlgorithm]
+    const clusterCount = selectedResult?.metrics?.cluster_count ?? clusters?.clusters?.length ?? 0
     return [
       { label: 'Transcript Words', value: transcriptWords },
       { label: 'Keywords', value: keywords.length },
       { label: 'Distinct Frequency Terms', value: frequencyRows.length },
-      { label: 'Clusters', value: clusters?.clusters?.length || 0 },
+      { label: 'Clusters', value: clusterCount },
     ]
-  }, [transcript, keywords.length, frequencyRows.length, clusters])
+  }, [transcript, keywords.length, frequencyRows.length, clusters, selectedAlgorithm])
+
+  const clusteringResults = useMemo(() => clusters?.results || {}, [clusters])
+  const clusteringKeys = useMemo(() => Object.keys(clusteringResults), [clusteringResults])
+  const recommendedAlgo = clusters?.recommended?.algorithm || ''
+  const selectedResult = selectedAlgorithm && clusteringResults[selectedAlgorithm]
 
   const beginLoader = () => {
     setShowLoader(true)
@@ -118,8 +126,22 @@ export default function AudioPage() {
 
       setActiveStage('clustering')
       setMessage('Running clustering...')
-      const clusterRes = await audioService.runClustering({ audio_id: uploadedAudioId, n_clusters: 3 })
+      const clusterRes = await audioService.runClustering({
+        audio_id: uploadedAudioId,
+        n_clusters: 3,
+        algorithm: 'all',
+        eps: 0.5,
+        min_samples: 2,
+      })
       setClusters(clusterRes)
+      if (clusterRes?.recommended?.algorithm) {
+        setSelectedAlgorithm(clusterRes.recommended.algorithm)
+      } else if (clusterRes?.results) {
+        const firstKey = Object.keys(clusterRes.results)[0]
+        setSelectedAlgorithm(firstKey || '')
+      } else {
+        setSelectedAlgorithm('')
+      }
       markStageDone('clustering', 'Clustering completed.')
 
       setMessage('Audio pipeline complete. Transcript, keyword analytics, and clustering are ready.')
@@ -451,8 +473,61 @@ export default function AudioPage() {
         <section className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
           <h3 className="text-lg font-semibold text-white">Cluster Output</h3>
           <p className="mt-1 text-sm text-slate-400">The backend groups keywords into semantic clusters after extraction.</p>
+          {recommendedAlgo && (
+            <div className="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-100">
+              Recommended algorithm: <span className="font-semibold">{recommendedAlgo}</span>
+            </div>
+          )}
+          {clusteringKeys.length > 0 && (
+            <div className="mt-4 flex flex-wrap items-center gap-3">
+              <label className="text-sm text-slate-400">Select algorithm</label>
+              <select
+                className="rounded-2xl border border-white/10 bg-slate-900/80 px-3 py-2 text-sm text-slate-100"
+                value={selectedAlgorithm}
+                onChange={(e) => setSelectedAlgorithm(e.target.value)}
+              >
+                {clusteringKeys.map((key) => (
+                  <option key={key} value={key}>{key}</option>
+                ))}
+              </select>
+            </div>
+          )}
+          {selectedResult?.metrics && (
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Silhouette</div>
+                <div className="mt-1 text-lg font-semibold text-white">
+                  {selectedResult.metrics.silhouette ?? 'n/a'}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Davies-Bouldin</div>
+                <div className="mt-1 text-lg font-semibold text-white">
+                  {selectedResult.metrics.davies_bouldin ?? 'n/a'}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Calinski-Harabasz</div>
+                <div className="mt-1 text-lg font-semibold text-white">
+                  {selectedResult.metrics.calinski_harabasz ?? 'n/a'}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-sm">
+                <div className="text-xs uppercase tracking-[0.16em] text-slate-500">Elapsed (ms)</div>
+                <div className="mt-1 text-lg font-semibold text-white">
+                  {selectedResult.elapsed_ms ?? 'n/a'}
+                </div>
+              </div>
+            </div>
+          )}
           <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-900/80 p-4 text-sm text-slate-200">
-            <pre className="whitespace-pre-wrap">{clusters ? JSON.stringify(clusters, null, 2) : 'Cluster results will appear here after the pipeline completes.'}</pre>
+            <pre className="whitespace-pre-wrap">
+              {selectedResult
+                ? JSON.stringify(selectedResult, null, 2)
+                : clusters
+                  ? JSON.stringify(clusters, null, 2)
+                  : 'Cluster results will appear here after the pipeline completes.'}
+            </pre>
           </div>
         </section>
       </div>

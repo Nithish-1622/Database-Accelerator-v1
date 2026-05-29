@@ -106,9 +106,18 @@ class AudioClusterView(APIView):
     def post(self, request, format=None):
         audio_id = request.data.get('audio_id')
         n_clusters = int(request.data.get('n_clusters', 3))
+        algorithm = request.data.get('algorithm', 'kmeans')
+        eps = float(request.data.get('eps', 0.5))
+        min_samples = int(request.data.get('min_samples', 2))
         if not audio_id:
             return Response({'error': 'audio_id required'}, status=status.HTTP_400_BAD_REQUEST)
-        res = ClusteringService.cluster_keywords(audio_id, n_clusters=n_clusters)
+        res = ClusteringService.cluster_keywords(
+            audio_id,
+            n_clusters=n_clusters,
+            algorithm=algorithm,
+            eps=eps,
+            min_samples=min_samples,
+        )
         if not res.get('success'):
             return Response({'error': res.get('message', 'failed')}, status=status.HTTP_400_BAD_REQUEST)
         return Response(res, status=status.HTTP_201_CREATED)

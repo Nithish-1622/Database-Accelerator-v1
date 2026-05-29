@@ -40,8 +40,14 @@ export const computeFrequencies = async (audio_id, top_k = 50) => {
   return resp.data
 }
 
-export const runClustering = async ({ audio_id, n_clusters = 3 }) => {
-  const resp = await client.post('/audio/clusters/', { audio_id, n_clusters })
+export const runClustering = async ({
+  audio_id,
+  n_clusters = 3,
+  algorithm = 'kmeans',
+  eps = 0.5,
+  min_samples = 2,
+}) => {
+  const resp = await client.post('/audio/clusters/', { audio_id, n_clusters, algorithm, eps, min_samples })
   return resp.data
 }
 

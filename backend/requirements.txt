@@ -14,3 +14,4 @@ torch>=2.2.0
 openai-whisper>=20231117
 spacy>=3.6.0
 nltk>=3.8.1
+scikit-learn>=1.4.2
