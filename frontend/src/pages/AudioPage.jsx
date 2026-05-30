@@ -126,9 +126,8 @@ export default function AudioPage() {
       davies: Number(row.davies) || 0,
       elapsed: Number(row.elapsed) || 0,
       memory: Number(row.memoryDelta) || 0,
-      isRecommended: row.algorithm === recommendedAlgo,
     }))
-  }, [comparisonRows, recommendedAlgo])
+  }, [comparisonRows])
 
   const overallScores = useMemo(() => {
     const normalize = (value, max, inverse = false) => {
@@ -158,29 +157,42 @@ export default function AudioPage() {
       }
     })
 
-    const best = scores.reduce((acc, row) => (row.score > acc.score ? row : acc), { algorithm: '', score: -1 })
+    const bestByScore = scores.reduce((acc, row) => (row.score > acc.score ? row : acc), { algorithm: '', score: -1 })
+    const recommended = recommendedAlgo
+      ? scores.find((row) => row.algorithm?.toLowerCase() === recommendedAlgo.toLowerCase())
+      : null
+    const best = recommended || bestByScore
+
     return {
       scores,
       bestAlgorithm: best.algorithm,
       bestScore: best.score,
     }
-  }, [comparisonRows, metricMax])
+  }, [comparisonRows, metricMax, recommendedAlgo])
 
   const performanceLineData = useMemo(() => {
     const scoreMap = overallScores.scores.reduce((acc, row) => {
       acc[row.algorithm] = row.score
       return acc
     }, {})
+
+    const normalize = (value, max, inverse = false) => {
+      if (!max) return 0
+      const ratio = Math.max(0, Math.min(1, value / max))
+      const normalized = inverse ? 1 - ratio : ratio
+      return Number((normalized * 100).toFixed(2))
+    }
+
     return comparisonRows.map((row) => ({
       name: row.algorithm,
-      silhouette: Number(row.silhouette) || 0,
-      calinski: Number(row.calinski) || 0,
-      davies: Number(row.davies) || 0,
-      elapsed: Number(row.elapsed) || 0,
-      memory: Number(row.memoryDelta) || 0,
-      overall: scoreMap[row.algorithm] || 0,
+      silhouette: normalize(Number(row.silhouette) || 0, metricMax.silhouette),
+      calinski: normalize(Number(row.calinski) || 0, metricMax.calinski),
+      davies: normalize(Number(row.davies) || 0, metricMax.davies, true),
+      elapsed: normalize(Number(row.elapsed) || 0, metricMax.elapsed, true),
+      memory: normalize(Number(row.memoryDelta) || 0, metricMax.memoryDelta, true),
+      overall: Number(((scoreMap[row.algorithm] || 0) * 100).toFixed(2)),
     }))
-  }, [comparisonRows, overallScores])
+  }, [comparisonRows, overallScores, metricMax])
 
   const beginLoader = () => {
     setShowLoader(true)
@@ -224,7 +236,7 @@ export default function AudioPage() {
       setMessage('Running clustering...')
       const clusterRes = await audioService.runClustering({
         audio_id: uploadedAudioId,
-        n_clusters: 3,
+        n_clusters: 8,
         algorithm: 'all',
         eps: 0.5,
         min_samples: 2,
@@ -561,9 +573,9 @@ export default function AudioPage() {
         <section className="rounded-3xl border border-white/10 bg-slate-950/60 p-6 shadow-xl">
           <h3 className="text-lg font-semibold text-white">Cluster Output</h3>
           <p className="mt-1 text-sm text-slate-400">The backend groups keywords into semantic clusters after extraction.</p>
-          {recommendedAlgo && (
+          {overallScores.bestAlgorithm && (
             <div className="mt-4 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 p-4 text-sm text-emerald-100">
-              Recommended algorithm: <span className="font-semibold">{recommendedAlgo}</span>
+              Best algorithm: <span className="font-semibold">{overallScores.bestAlgorithm}</span>
             </div>
           )}
           {comparisonRows.length > 0 && (
@@ -574,9 +586,9 @@ export default function AudioPage() {
                     <h4 className="text-base font-semibold text-white">Performance Comparison</h4>
                     <p className="text-sm text-slate-400">Side-by-side view of clustering quality, speed, and memory.</p>
                   </div>
-                  {recommendedAlgo && (
+                  {overallScores.bestAlgorithm && (
                     <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-100">
-                      Best: {recommendedAlgo}
+                      Best: {overallScores.bestAlgorithm}
                     </span>
                   )}
                 </div>
@@ -586,20 +598,20 @@ export default function AudioPage() {
                     <div
                       key={row.name}
                       className={`rounded-2xl border px-4 py-3 text-sm ${
-                        row.isRecommended
+                        overallScores.bestAlgorithm === row.name
                           ? 'border-emerald-400/40 bg-emerald-400/10'
                           : 'border-white/10 bg-white/5'
                       }`}
                     >
                       <div className="flex items-center justify-between">
                         <span className="font-semibold text-white">{row.name}</span>
-                        {row.isRecommended && (
-                          <span className="text-xs uppercase tracking-[0.16em] text-emerald-200">Recommended</span>
+                        {overallScores.bestAlgorithm === row.name && (
+                          <span className="text-xs uppercase tracking-[0.16em] text-emerald-200">Best Algorithm</span>
                         )}
                       </div>
                       {overallScores.bestAlgorithm === row.name && (
                         <div className="mt-2 inline-flex items-center gap-2 rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-100">
-                          Best performer · Score {overallScores.bestScore}
+                          Overall Score · {overallScores.bestScore}
                         </div>
                       )}
                       <div className="mt-3 space-y-2">
@@ -617,7 +629,7 @@ export default function AudioPage() {
                   <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                     <div>
                       <h4 className="text-base font-semibold text-white">Performance Trend Line</h4>
-                      <p className="text-sm text-slate-400">Compare metrics and overall score across algorithms.</p>
+                      <p className="text-sm text-slate-400">Compare normalized performance (0-100) and overall score across algorithms.</p>
                     </div>
                     {overallScores.bestAlgorithm && (
                       <span className="rounded-full border border-amber-400/40 bg-amber-400/10 px-3 py-1 text-xs font-semibold text-amber-100">
@@ -667,7 +679,7 @@ export default function AudioPage() {
                       <tr
                         key={row.algorithm}
                         className={`border-t border-white/10 even:bg-white/5 ${
-                          overallScores.bestAlgorithm === row.algorithm ? 'bg-amber-400/10' : ''
+                          overallScores.bestAlgorithm === row.algorithm ? 'bg-amber-400/20 ring-1 ring-inset ring-amber-300/40' : ''
                         }`}
                       >
                         <td className="px-4 py-3 font-medium text-white">
@@ -730,13 +742,13 @@ export default function AudioPage() {
               </div>
             </div>
           )}
-          <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-900/80 p-4 text-sm text-slate-200">
+          {/* <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-900/80 p-4 text-sm text-slate-200">
             <pre className="whitespace-pre-wrap">
               {clusters
                 ? JSON.stringify(clusters, null, 2)
                 : 'Cluster results will appear here after the pipeline completes.'}
             </pre>
-          </div>
+          </div> */}
         </section>
       </div>
     </div>

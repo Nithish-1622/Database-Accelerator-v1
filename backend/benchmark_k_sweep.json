@@ -1,0 +1,4463 @@
+{
+  "audios_evaluated": 16,
+  "aggregate_avg_silhouette_by_k": {
+    "kmeans": {
+      "2": 0.8030541634273075,
+      "3": 0.7534183260227009,
+      "4": 0.6940867473044102,
+      "5": 0.7472276907395955,
+      "6": 0.7564574314574315,
+      "7": 0.8590277777777777,
+      "8": 0.8762896825396824
+    },
+    "agglomerative": {
+      "2": 0.7075453432146619,
+      "3": 0.6137271935738987,
+      "4": 0.607325903891359,
+      "5": 0.653824229397146,
+      "6": 0.6619002525252525,
+      "7": 0.7516493055555555,
+      "8": 0.7667534722222221
+    },
+    "gmm": {
+      "2": 0.45823098443399196,
+      "3": 0.4611543965060799,
+      "4": 0.6324669312169312,
+      "5": 0.7472276907395955,
+      "6": 0.7564574314574315,
+      "7": 0.8590277777777777,
+      "8": 0.8762896825396824
+    },
+    "spectral": {
+      "2": 0.40095211137974296,
+      "3": 0.5968483338955808,
+      "4": 0.6704711035796562,
+      "5": 0.2027627702463229,
+      "6": 0.16498686986852032,
+      "7": 0.11825997925182707,
+      "8": -0.012979184558131915
+    }
+  },
+  "details": [
+    {
+      "audio_id": "2c96c689-ac37-44f9-a23c-df1f79e4db5d",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 4.78,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 2531.21,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 6.9,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 6.07,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 6.38,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 5.37,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 5.39,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 4.78,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.54,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 30.78,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.5,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.61,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.48,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.53,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.5,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.54,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.56,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 13.91,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 14.81,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 10.25,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 10.46,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 6.82,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 9.73,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.56,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 42.61,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 43.8,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 40.2,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 42.61,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 46.81,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 48.18,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 52.73,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 57.07,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "c97a0a81-4710-4062-b5fa-f67c3b07fd4e",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 4.85,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 5.31,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 4.85,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 4.38,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 4.77,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 4.8,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 5.12,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 4.85,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.74,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.66,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.5,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.57,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.58,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.79,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.42,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.74,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 8.89,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 18.43,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 19.02,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 12.09,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 9.99,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 11.99,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 13.0,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 8.89,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 43.7,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 49.13,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 49.46,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 43.7,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 42.35,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 42.89,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 44.19,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 49.73,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "bc46e202-7215-4f8c-a229-8ffe43a0586d",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 4.57,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 5.22,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 4.94,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 4.48,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 4.58,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 4.38,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 4.91,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 4.57,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.57,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.6,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.51,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.52,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.47,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.53,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.4,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.57,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.32,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 12.35,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 14.89,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 10.93,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 7.17,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 7.42,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 7.45,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.32,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 56.04,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 41.86,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 49.52,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 56.04,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 60.34,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 60.74,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 61.01,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 60.24,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "d047a8c6-5936-47ae-bda7-23a7c511e27c",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 6.1,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 5.31,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 5.47,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 6.98,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 6.23,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 6.67,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 5.85,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 6.1,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.77,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.69,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.69,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.54,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.62,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.53,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.7,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.77,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.79,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 15.82,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 17.53,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 12.27,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 7.95,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 6.85,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 7.26,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.79,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 40.88,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 39.67,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 39.1,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 40.88,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 43.4,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 44.85,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 43.38,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 55.85,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "be8d4658-2555-483b-9ff8-2f2cf3952867",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 5.04,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 4.9,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 4.51,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 4.53,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 4.92,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 4.68,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 5.15,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 5.04,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.56,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.54,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.52,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.45,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.57,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.5,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.54,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.56,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.71,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 12.22,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 13.83,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 10.31,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 8.48,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 7.7,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 7.86,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.71,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 42.81,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 41.25,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 39.96,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 42.81,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 41.3,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 42.65,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 40.56,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 40.32,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "78dda2ad-8674-4ef8-b38c-b8ce82ef8998",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 4.82,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 4.42,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 4.28,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 4.3,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 4.28,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 4.38,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 4.22,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 4.82,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.48,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.49,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.4,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.51,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.52,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.53,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.64,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.48,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.45,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 12.18,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 14.57,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 10.36,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 7.19,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 6.61,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 7.11,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.45,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 37.66,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 37.78,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 40.14,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 37.66,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 40.57,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 37.99,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 43.66,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 42.22,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "a94e14ce-9bd5-412e-8336-14a8fd247cda",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": null,
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.41,
+              "clusters": 1
+            },
+            {
+              "k": 3,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 4.93,
+              "clusters": 1
+            },
+            {
+              "k": 4,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 6.03,
+              "clusters": 1
+            },
+            {
+              "k": 5,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.78,
+              "clusters": 1
+            },
+            {
+              "k": 6,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 4.52,
+              "clusters": 1
+            },
+            {
+              "k": 7,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 6.14,
+              "clusters": 1
+            },
+            {
+              "k": 8,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 4.89,
+              "clusters": 1
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 2,
+            "silhouette": 0.0,
+            "davies": 0.0,
+            "calinski": 1.0,
+            "elapsed_ms": 1.03,
+            "clusters": 2
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 1.03,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.55,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.5,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.42,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.52,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.39,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.41,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": null,
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.16,
+              "clusters": 1
+            },
+            {
+              "k": 3,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.96,
+              "clusters": 1
+            },
+            {
+              "k": 4,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 9.13,
+              "clusters": 1
+            },
+            {
+              "k": 5,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.12,
+              "clusters": 1
+            },
+            {
+              "k": 6,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 9.02,
+              "clusters": 1
+            },
+            {
+              "k": 7,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 8.29,
+              "clusters": 1
+            },
+            {
+              "k": 8,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 8.33,
+              "clusters": 1
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 2,
+            "silhouette": 0.0,
+            "davies": 0.0,
+            "calinski": 1.0,
+            "elapsed_ms": 40.95,
+            "clusters": 2
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 40.95,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 41.96,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 44.05,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 42.48,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 42.94,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 43.48,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 43.8,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "b267ac83-0bbf-4dec-b719-9ae117f6f1d0",
+      "keyword_count": 28,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 4.18,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.798665852456276,
+              "davies": 0.3616279069767442,
+              "calinski": 107.24101008298386,
+              "elapsed_ms": 5.32,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7478589762640107,
+              "davies": 0.316487921135305,
+              "calinski": 87.75136154168413,
+              "elapsed_ms": 4.31,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898782,
+              "elapsed_ms": 4.48,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 4.37,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 5.54,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 4.46,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 4.18,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 0.58,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8043487365808796,
+              "davies": 0.32,
+              "calinski": 94.11196911196913,
+              "elapsed_ms": 0.45,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6973974867724867,
+              "davies": 0.4438095238095239,
+              "calinski": 124.71330275229357,
+              "elapsed_ms": 0.5,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6898294595616024,
+              "davies": 0.3216738816738817,
+              "calinski": 147.01214574898785,
+              "elapsed_ms": 0.46,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 0.55,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 0.66,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 0.52,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 0.58,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8720238095238094,
+            "davies": 0.09284741746042055,
+            "calinski": 1950.6122448979593,
+            "elapsed_ms": 7.45,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 12.8,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.4674304587955903,
+              "davies": 0.5114043662430761,
+              "calinski": 28.3268880800728,
+              "elapsed_ms": 14.99,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6402116402116401,
+              "davies": 0.3284920634920635,
+              "calinski": 110.90683229813664,
+              "elapsed_ms": 10.56,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7420351473922903,
+              "davies": 0.3834343434343434,
+              "calinski": 239.95982142857144,
+              "elapsed_ms": 8.44,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7535714285714287,
+              "davies": 0.29909454909454913,
+              "calinski": 559.6642857142856,
+              "elapsed_ms": 7.12,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8541666666666666,
+              "davies": 0.20305816020101747,
+              "calinski": 1022.0714285714288,
+              "elapsed_ms": 7.43,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8720238095238094,
+              "davies": 0.09284741746042055,
+              "calinski": 1950.6122448979593,
+              "elapsed_ms": 7.45,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7474867724867725,
+            "davies": 0.4904761904761905,
+            "calinski": 119.20265780730895,
+            "elapsed_ms": 39.23,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.46609770350371854,
+              "davies": 0.7294429708222809,
+              "calinski": 17.734941061966044,
+              "elapsed_ms": 37.56,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6860104774756132,
+              "davies": 0.396129718234981,
+              "calinski": 90.12555989707425,
+              "elapsed_ms": 35.92,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7474867724867725,
+              "davies": 0.4904761904761905,
+              "calinski": 119.20265780730895,
+              "elapsed_ms": 39.23,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.21177248677248678,
+              "davies": 0.4590476190476191,
+              "calinski": 85.67691029900332,
+              "elapsed_ms": 39.9,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.46274509803921565,
+              "calinski": 36.81017612524462,
+              "elapsed_ms": 40.63,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1254275716232238,
+              "davies": 0.4652100840336134,
+              "calinski": 29.280821917808215,
+              "elapsed_ms": 42.33,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": -0.1922105672105672,
+              "davies": 1.0530032467532469,
+              "calinski": 29.76865067530144,
+              "elapsed_ms": 43.24,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "10f8511b-0508-4be6-bfe3-b9a43570eb01",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 4.49,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 4.92,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.88,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 4.19,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 4.6,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 4.68,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 4.6,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 4.49,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.51,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.59,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.52,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.51,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.56,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.5,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.54,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.51,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 7.6,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 14.09,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 15.27,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 17.2,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 9.39,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 6.89,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 7.27,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 7.6,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 40.13,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 47.32,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 39.9,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 40.13,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 40.56,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 41.35,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 39.97,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 42.03,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "e1034f5c-9f02-439a-a973-d937d63614a5",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 4.52,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 4.8,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.1,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 4.34,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 4.38,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 4.4,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 4.3,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 4.52,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.52,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.53,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.52,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.61,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.39,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.55,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.49,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.52,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 7.14,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 13.7,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 15.25,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 11.78,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 8.03,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 6.44,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 6.77,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 7.14,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 38.56,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 36.73,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 38.37,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 38.56,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 40.16,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 39.0,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 41.91,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 39.95,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "3429d7d8-eda2-48c0-a934-9eb4897e134d",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 4.96,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 4.81,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.17,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 4.57,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 4.26,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 4.28,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 5.57,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 4.96,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.54,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.6,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.56,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.53,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.53,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.5,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.55,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.54,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 8.63,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 13.86,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 17.24,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 15.43,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 12.68,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 8.85,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 8.55,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 8.63,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 45.04,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 51.51,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 45.66,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 45.04,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 40.01,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 43.74,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 42.68,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 44.85,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "9d48989f-e99c-43f3-a009-3a76186a91f2",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 4.42,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 4.12,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.45,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 4.31,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 4.07,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 3.94,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 4.4,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 4.42,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.52,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.59,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.54,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.49,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.52,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.45,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.56,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.52,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 6.96,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 12.85,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 16.81,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 14.3,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 7.65,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 6.51,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 7.23,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 6.96,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 44.4,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 37.21,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 36.8,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 44.4,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 41.37,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 41.79,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 44.23,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 42.64,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "7b01b654-5e3d-4441-b5ef-e1c44171f012",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 5.16,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 4.32,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.22,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 4.56,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 5.04,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 5.31,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 5.1,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 5.16,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.59,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.66,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.53,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.55,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.51,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.52,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.49,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.59,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 8.11,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 18.44,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 27.01,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 15.22,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 11.47,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 7.63,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 7.87,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 8.11,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 50.44,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 44.0,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 50.57,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 50.44,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 52.97,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 51.97,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 51.84,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 47.14,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "c038bc07-38d3-46ca-ab3f-5b1cac9be30e",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 5.59,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 5.05,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 4.82,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 5.01,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 6.42,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 5.25,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 6.33,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 5.59,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 0.58,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.91,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.48,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.65,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.53,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.57,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.79,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 0.58,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 9.91,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 16.53,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 16.94,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 12.04,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 8.41,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 7.69,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 7.93,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 9.91,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 44.46,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 44.6,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 44.46,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 44.46,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 47.08,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 43.49,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 43.98,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 46.95,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "49e0577d-504b-4a90-9397-712582384f6d",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 5.96,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.807442474398339,
+              "davies": 0.35595453796738596,
+              "calinski": 116.21452088685889,
+              "elapsed_ms": 6.0,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7589776757813909,
+              "davies": 0.3120450613970056,
+              "calinski": 94.72153436018957,
+              "elapsed_ms": 6.19,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015303,
+              "elapsed_ms": 7.12,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 7.42,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 6.08,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 6.93,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 5.96,
+              "clusters": 8
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.7904761904765,
+            "elapsed_ms": 1.33,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.8128977621954904,
+              "davies": 0.3129697963646303,
+              "calinski": 101.59822134387352,
+              "elapsed_ms": 0.68,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.7054075271107103,
+              "davies": 0.4429631873958491,
+              "calinski": 134.48509615384617,
+              "elapsed_ms": 0.56,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6983440350472183,
+              "davies": 0.32103912936362566,
+              "calinski": 156.99087159015306,
+              "elapsed_ms": 0.61,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.74637681159425,
+              "elapsed_ms": 0.69,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 0.62,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 0.82,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.7904761904765,
+              "elapsed_ms": 1.33,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": {
+            "k": 8,
+            "silhouette": 0.8805555555555554,
+            "davies": 0.09284741746042055,
+            "calinski": 2177.790476190476,
+            "elapsed_ms": 11.88,
+            "clusters": 8
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 18.07,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.45487833421656954,
+              "davies": 0.5227441928171853,
+              "calinski": 28.611099585062238,
+              "elapsed_ms": 19.46,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.6247222222222223,
+              "davies": 0.33873274637605844,
+              "calinski": 111.39681387376488,
+              "elapsed_ms": 13.93,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.7524202340869007,
+              "davies": 0.3770851370851372,
+              "calinski": 257.7463768115942,
+              "elapsed_ms": 12.99,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.7593434343434343,
+              "davies": 0.29245674245674264,
+              "calinski": 573.286611570248,
+              "elapsed_ms": 10.56,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.8638888888888888,
+              "davies": 0.20305816020101747,
+              "calinski": 1136.2,
+              "elapsed_ms": 8.86,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.8805555555555554,
+              "davies": 0.09284741746042055,
+              "calinski": 2177.790476190476,
+              "elapsed_ms": 11.88,
+              "clusters": 8
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 4,
+            "silhouette": 0.7850186071238703,
+            "davies": 0.36838235294117627,
+            "calinski": 74.66943802925326,
+            "elapsed_ms": 55.57,
+            "clusters": 4
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.4503642653642654,
+              "davies": 0.7506053268765132,
+              "calinski": 17.32187048761524,
+              "elapsed_ms": 48.91,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.6782142857142858,
+              "davies": 0.3978494623655913,
+              "calinski": 96.06842105263156,
+              "elapsed_ms": 58.55,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.7850186071238703,
+              "davies": 0.36838235294117627,
+              "calinski": 74.66943802925326,
+              "elapsed_ms": 55.57,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.344705882352941,
+              "calinski": 53.848152424942256,
+              "elapsed_ms": 51.22,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.25168527379053696,
+              "davies": 0.32892156862745076,
+              "calinski": 41.355381062355654,
+              "elapsed_ms": 54.74,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.1448809523809524,
+              "davies": 0.39907834101382483,
+              "calinski": 27.27868745938922,
+              "elapsed_ms": 52.83,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.16254385964912282,
+              "davies": 0.43678160919540293,
+              "calinski": 47.4458026509573,
+              "elapsed_ms": 45.02,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    },
+    {
+      "audio_id": "e35d48ec-1634-49bc-82fa-0580769ad713",
+      "keyword_count": 30,
+      "algorithms": {
+        "kmeans": {
+          "best_by_silhouette": null,
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.35,
+              "clusters": 1
+            },
+            {
+              "k": 3,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 4.45,
+              "clusters": 1
+            },
+            {
+              "k": 4,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 4.81,
+              "clusters": 1
+            },
+            {
+              "k": 5,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.48,
+              "clusters": 1
+            },
+            {
+              "k": 6,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.04,
+              "clusters": 1
+            },
+            {
+              "k": 7,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.49,
+              "clusters": 1
+            },
+            {
+              "k": 8,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 5.44,
+              "clusters": 1
+            }
+          ]
+        },
+        "agglomerative": {
+          "best_by_silhouette": {
+            "k": 2,
+            "silhouette": 0.0,
+            "davies": 0.0,
+            "calinski": 1.0,
+            "elapsed_ms": 0.76,
+            "clusters": 2
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.76,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.56,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.7,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.55,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.55,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.55,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 0.57,
+              "clusters": 8
+            }
+          ]
+        },
+        "gmm": {
+          "best_by_silhouette": null,
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.88,
+              "clusters": 1
+            },
+            {
+              "k": 3,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.16,
+              "clusters": 1
+            },
+            {
+              "k": 4,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 7.31,
+              "clusters": 1
+            },
+            {
+              "k": 5,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 8.89,
+              "clusters": 1
+            },
+            {
+              "k": 6,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 8.62,
+              "clusters": 1
+            },
+            {
+              "k": 7,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 9.58,
+              "clusters": 1
+            },
+            {
+              "k": 8,
+              "silhouette": null,
+              "davies": null,
+              "calinski": null,
+              "elapsed_ms": 11.03,
+              "clusters": 1
+            }
+          ]
+        },
+        "spectral": {
+          "best_by_silhouette": {
+            "k": 2,
+            "silhouette": 0.0,
+            "davies": 0.0,
+            "calinski": 1.0,
+            "elapsed_ms": 43.91,
+            "clusters": 2
+          },
+          "trials": [
+            {
+              "k": 2,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 43.91,
+              "clusters": 2
+            },
+            {
+              "k": 3,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 42.23,
+              "clusters": 3
+            },
+            {
+              "k": 4,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 42.84,
+              "clusters": 4
+            },
+            {
+              "k": 5,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 47.31,
+              "clusters": 5
+            },
+            {
+              "k": 6,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 51.94,
+              "clusters": 6
+            },
+            {
+              "k": 7,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 56.05,
+              "clusters": 7
+            },
+            {
+              "k": 8,
+              "silhouette": 0.0,
+              "davies": 0.0,
+              "calinski": 1.0,
+              "elapsed_ms": 59.28,
+              "clusters": 8
+            }
+          ]
+        }
+      }
+    }
+  ]
+}

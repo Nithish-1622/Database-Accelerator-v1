@@ -28,10 +28,12 @@ except Exception:
 
 
 class ClusteringService:
+    DEFAULT_N_CLUSTERS = 8
+
     @staticmethod
     def cluster_keywords(
         audio_id,
-        n_clusters: int = 3,
+        n_clusters: int = DEFAULT_N_CLUSTERS,
         algorithm: str = 'kmeans',
         eps: float = 0.5,
         min_samples: int = 2,
@@ -94,7 +96,7 @@ class ClusteringService:
         audio: AudioUpload,
         kws,
         keyword_counts: Dict[str, int],
-        n_clusters: int = 3,
+        n_clusters: int = DEFAULT_N_CLUSTERS,
         eps: float = 0.5,
         min_samples: int = 2,
     ) -> dict:
@@ -146,28 +148,35 @@ class ClusteringService:
     def _run_single_algorithm(
         algorithm: str,
         keyword_counts: Dict[str, int],
-        n_clusters: int = 3,
+        n_clusters: int = DEFAULT_N_CLUSTERS,
         eps: float = 0.5,
         min_samples: int = 2,
     ) -> dict:
+        requested_n_clusters = n_clusters
+        keyword_count = len(keyword_counts)
+        if algorithm in {'kmeans', 'agglomerative', 'gmm', 'spectral'}:
+            if keyword_count < 2:
+                return {'success': False, 'message': 'Need at least 2 keywords for clustering'}
+            n_clusters = max(2, min(int(n_clusters), keyword_count))
+
         rss_before = ClusteringService._get_rss_mb()
         start = time.perf_counter()
         try:
             if algorithm == 'kmeans':
                 labels, centers = run_kmeans(keyword_counts, n_clusters=n_clusters)
-                params = {'n_clusters': n_clusters}
+                params = {'n_clusters_requested': requested_n_clusters, 'n_clusters_effective': n_clusters}
             elif algorithm == 'agglomerative':
                 labels, centers = run_agglomerative(keyword_counts, n_clusters=n_clusters)
-                params = {'n_clusters': n_clusters}
+                params = {'n_clusters_requested': requested_n_clusters, 'n_clusters_effective': n_clusters}
             elif algorithm == 'dbscan':
                 labels, centers = run_dbscan(keyword_counts, eps=eps, min_samples=min_samples)
                 params = {'eps': eps, 'min_samples': min_samples}
             elif algorithm == 'gmm':
                 labels, centers = run_gmm(keyword_counts, n_components=n_clusters)
-                params = {'n_components': n_clusters}
+                params = {'n_components_requested': requested_n_clusters, 'n_components_effective': n_clusters}
             elif algorithm == 'spectral':
                 labels, centers = run_spectral(keyword_counts, n_clusters=n_clusters)
-                params = {'n_clusters': n_clusters}
+                params = {'n_clusters_requested': requested_n_clusters, 'n_clusters_effective': n_clusters}
             else:
                 return {'success': False, 'message': f'Unsupported algorithm: {algorithm}'}
         except Exception as e:

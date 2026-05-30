@@ -60,5 +60,6 @@ Thumbs.db
 !/samples/.gitkeep
 
 *.md
+!cluster_algorithms.md
 .env
 .env.example

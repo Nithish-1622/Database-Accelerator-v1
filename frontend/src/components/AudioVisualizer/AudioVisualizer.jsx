@@ -32,7 +32,7 @@ export default function AudioVisualizer({ type='bar', data }) {
         <LineChart data={arr} margin={{ top: 5, right: 20, left: 10, bottom: 5 }}>
           <CartesianGrid stroke="#1f2937" strokeDasharray="3 3" />
           <XAxis dataKey="name" />
-          <YAxis />
+          <YAxis domain={[0, 100]} />
           <Tooltip />
           <Legend />
           <Line type="monotone" dataKey="overall" stroke="#f59e0b" strokeWidth={2} />

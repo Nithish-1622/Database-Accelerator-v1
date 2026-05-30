@@ -105,7 +105,7 @@ class AudioFrequenciesComputeView(APIView):
 class AudioClusterView(APIView):
     def post(self, request, format=None):
         audio_id = request.data.get('audio_id')
-        n_clusters = int(request.data.get('n_clusters', 3))
+        n_clusters = int(request.data.get('n_clusters', ClusteringService.DEFAULT_N_CLUSTERS))
         algorithm = request.data.get('algorithm', 'kmeans')
         eps = float(request.data.get('eps', 0.5))
         min_samples = int(request.data.get('min_samples', 2))
