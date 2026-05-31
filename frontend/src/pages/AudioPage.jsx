@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react'
+import { CartesianGrid, Legend, Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, XAxis, YAxis } from 'recharts'
 import audioService from '../services/audioService'
 import AudioVisualizer from '../components/AudioVisualizer/AudioVisualizer'
 
@@ -16,6 +17,13 @@ const loadingStages = [
   { key: 'frequency', label: 'Frequency Mapping' },
   { key: 'clustering', label: 'Clustering' },
 ]
+
+const algorithmLabels = {
+  kmeans: 'KMeans',
+  agglomerative: 'Agglomerative',
+  gmm: 'GMM',
+  spectral: 'Spectral',
+}
 
 export default function AudioPage() {
   const [file, setFile] = useState(null)
@@ -193,6 +201,34 @@ export default function AudioPage() {
       overall: Number(((scoreMap[row.algorithm] || 0) * 100).toFixed(2)),
     }))
   }, [comparisonRows, overallScores, metricMax])
+
+  const kSweepCards = useMemo(() => {
+    const sweepAlgorithms = clusters?.k_sweep?.algorithms || {}
+    return Object.entries(algorithmLabels)
+      .map(([algorithm, label]) => {
+        const payload = sweepAlgorithms[algorithm] || {}
+        const points = Array.isArray(payload.points) ? payload.points : []
+        return {
+          algorithm,
+          label,
+          points,
+          best: payload.best || null,
+        }
+      })
+      .filter((item) => item.points.length > 0)
+  }, [clusters])
+
+  const kSweepSummaryRows = useMemo(() => {
+    return kSweepCards.map((item) => ({
+      algorithm: item.algorithm,
+      label: item.label,
+      bestK: item.best?.requested_k ?? null,
+      bestEffectiveK: item.best?.effective_k ?? null,
+      bestScore: item.best?.score ?? null,
+      bestSilhouette: item.best?.silhouette ?? null,
+      bestCalinski: item.best?.calinski_harabasz ?? null,
+    }))
+  }, [kSweepCards])
 
   const beginLoader = () => {
     setShowLoader(true)
@@ -750,6 +786,161 @@ export default function AudioPage() {
             </pre>
           </div> */}
         </section>
+
+        {kSweepCards.length > 0 && (
+          <section className="rounded-3xl border border-cyan-300/20 bg-slate-950/60 p-6 shadow-xl">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <h3 className="text-lg font-semibold text-white">K Sweep Analysis</h3>
+                <p className="mt-1 text-sm text-slate-400">
+                  The backend reran each K-based clustering algorithm from K=3 to K=8 so you can compare how the score moves as K changes.
+                </p>
+              </div>
+              {clusters?.k_sweep?.note && (
+                <div className="rounded-full border border-cyan-300/20 bg-cyan-400/10 px-3 py-1 text-xs font-semibold text-cyan-100">
+                  {clusters.k_sweep.note}
+                </div>
+              )}
+            </div>
+
+            {clusters?.k_sweep?.message && (
+              <div className="mt-4 rounded-2xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm text-amber-100">
+                {clusters.k_sweep.message}
+              </div>
+            )}
+
+            <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+              {kSweepSummaryRows.map((row) => (
+                <div key={row.algorithm} className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-semibold text-white">{row.label}</span>
+                    <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-300">
+                      Best K {row.bestK ?? 'n/a'}
+                    </span>
+                  </div>
+                  <div className="mt-3 space-y-2 text-sm text-slate-300">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-slate-400">Best score</span>
+                      <span className="font-medium text-white">{formatSweepValue(row.bestScore)}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-slate-400">Silhouette</span>
+                      <span className="font-medium text-white">{formatSweepValue(row.bestSilhouette)}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-slate-400">Calinski-Harabasz</span>
+                      <span className="font-medium text-white">{formatSweepValue(row.bestCalinski)}</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-slate-400">Effective K</span>
+                      <span className="font-medium text-white">{row.bestEffectiveK ?? 'n/a'}</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-6 xl:grid-cols-2">
+              {kSweepCards.map((item) => {
+                const chartData = item.points.map((point) => ({
+                  ...point,
+                  label: `K=${point.requested_k}`,
+                }))
+
+                return (
+                  <div key={item.algorithm} className="rounded-2xl border border-white/10 bg-slate-900/80 p-5">
+                    <div className="flex flex-col gap-2 md:flex-row md:items-center md:justify-between">
+                      <div>
+                        <h4 className="text-base font-semibold text-white">{item.label} Trend</h4>
+                        <p className="text-sm text-slate-400">Silhouette and score change as K increases from 3 to 8.</p>
+                      </div>
+                      {item.best?.requested_k !== undefined && item.best?.requested_k !== null && (
+                        <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-100">
+                          Best K {item.best.requested_k}
+                        </span>
+                      )}
+                    </div>
+
+                    <div className="mt-4 h-[280px]">
+                      <ResponsiveContainer width="100%" height="100%">
+                        <LineChart data={chartData} margin={{ top: 5, right: 16, left: 0, bottom: 5 }}>
+                          <CartesianGrid stroke="rgba(148, 163, 184, 0.16)" strokeDasharray="3 3" />
+                          <XAxis dataKey="requested_k" tickFormatter={(value) => `K${value}`} stroke="#94a3b8" />
+                          <YAxis stroke="#94a3b8" />
+                          <Tooltip
+                            contentStyle={{ backgroundColor: '#0f172a', border: '1px solid rgba(148, 163, 184, 0.25)', borderRadius: '12px' }}
+                            labelFormatter={(label) => `K=${label}`}
+                            formatter={(value, name) => [formatSweepValue(value), name]}
+                          />
+                          <Legend />
+                          {item.best?.requested_k !== undefined && item.best?.requested_k !== null && (
+                            <ReferenceLine
+                              x={item.best.requested_k}
+                              stroke="#f59e0b"
+                              strokeDasharray="6 6"
+                              strokeOpacity={0.7}
+                              label={{ value: `Best K ${item.best.requested_k}`, position: 'top', fill: '#fbbf24', fontSize: 12 }}
+                            />
+                          )}
+                          <Line
+                            type="monotone"
+                            dataKey="silhouette"
+                            name="Silhouette"
+                            stroke="#34d399"
+                            strokeWidth={2}
+                            connectNulls
+                            dot={(props) => renderSweepDot(props, item.best?.requested_k, '#34d399')}
+                            activeDot={{ r: 5 }}
+                          />
+                          <Line
+                            type="monotone"
+                            dataKey="score"
+                            name="Score"
+                            stroke="#f59e0b"
+                            strokeWidth={2}
+                            connectNulls
+                            dot={(props) => renderSweepDot(props, item.best?.requested_k, '#f59e0b')}
+                            activeDot={{ r: 5 }}
+                          />
+                        </LineChart>
+                      </ResponsiveContainer>
+                    </div>
+
+                    <div className="mt-4 overflow-auto rounded-2xl border border-white/10 bg-slate-950/70">
+                      <table className="min-w-full text-left text-sm text-slate-200">
+                        <thead className="bg-white/5 text-xs uppercase tracking-[0.15em] text-slate-400">
+                          <tr>
+                            <th className="px-4 py-3">K</th>
+                            <th className="px-4 py-3">Effective K</th>
+                            <th className="px-4 py-3">Silhouette</th>
+                            <th className="px-4 py-3">Calinski</th>
+                            <th className="px-4 py-3">Davies-Bouldin</th>
+                            <th className="px-4 py-3">Score</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {chartData.map((point) => (
+                            <tr
+                              key={`${item.algorithm}-${point.requested_k}`}
+                              className={`border-t border-white/10 even:bg-white/5 ${item.best?.requested_k === point.requested_k ? 'bg-amber-400/10 ring-1 ring-inset ring-amber-300/30' : ''}`}
+                            >
+                              <td className="px-4 py-3 font-medium text-white">{point.requested_k}</td>
+                              <td className="px-4 py-3">{point.effective_k ?? 'n/a'}</td>
+                              <td className="px-4 py-3">{formatSweepValue(point.silhouette)}</td>
+                              <td className="px-4 py-3">{formatSweepValue(point.calinski_harabasz)}</td>
+                              <td className="px-4 py-3">{formatSweepValue(point.davies_bouldin)}</td>
+                              <td className="px-4 py-3">{formatSweepValue(point.score)}</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   )
@@ -772,5 +963,41 @@ function MetricBar({ label, value, max, color, higherIsBetter = true }) {
         <div className={`h-2 rounded-full ${color}`} style={{ width: `${width}%` }} />
       </div>
     </div>
+  )
+}
+
+function formatSweepValue(value, digits = 3) {
+  if (value === null || value === undefined || value === '') {
+    return 'n/a'
+  }
+
+  const numeric = Number(value)
+  if (!Number.isFinite(numeric)) {
+    return 'n/a'
+  }
+
+  if (Number.isInteger(numeric)) {
+    return String(numeric)
+  }
+
+  return numeric.toFixed(digits)
+}
+
+function renderSweepDot(props, bestK, color) {
+  const { cx, cy, payload } = props || {}
+  if (cx === undefined || cy === undefined || !payload) {
+    return null
+  }
+
+  const isBest = Number(payload.requested_k) === Number(bestK)
+  if (!isBest) {
+    return <circle cx={cx} cy={cy} r={3} fill={color} fillOpacity={0.7} stroke="none" />
+  }
+
+  return (
+    <g>
+      <circle cx={cx} cy={cy} r={8} fill="#0f172a" stroke={color} strokeWidth={2.5} />
+      <circle cx={cx} cy={cy} r={4.5} fill={color} />
+    </g>
   )
 }

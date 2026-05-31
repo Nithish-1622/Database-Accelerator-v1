@@ -29,6 +29,9 @@ except Exception:
 
 class ClusteringService:
     DEFAULT_N_CLUSTERS = 8
+    K_SWEEP_MIN = 3
+    K_SWEEP_MAX = 8
+    K_SWEEP_ALGORITHMS = ('kmeans', 'agglomerative', 'gmm', 'spectral')
 
     @staticmethod
     def cluster_keywords(
@@ -138,10 +141,17 @@ class ClusteringService:
                     'metrics': result.get('metrics'),
                 }
 
+        k_sweep = ClusteringService._build_k_sweep(
+            keyword_counts,
+            eps=eps,
+            min_samples=min_samples,
+        )
+
         return {
             'success': True,
             'results': results,
             'recommended': recommended,
+            'k_sweep': k_sweep,
         }
 
     @staticmethod
@@ -199,6 +209,67 @@ class ClusteringService:
             'elapsed_ms': elapsed_ms,
             'parameters': params,
         }
+
+    @staticmethod
+    def _build_k_sweep(
+        keyword_counts: Dict[str, int],
+        eps: float = 0.5,
+        min_samples: int = 2,
+    ) -> dict:
+        k_values = list(range(ClusteringService.K_SWEEP_MIN, ClusteringService.K_SWEEP_MAX + 1))
+        sweep = {
+            'range': k_values,
+            'note': 'DBSCAN is excluded because it does not use K.',
+            'algorithms': {},
+        }
+
+        if len(keyword_counts) < 2:
+            sweep['message'] = 'Need at least 2 keywords to compute a K sweep.'
+            return sweep
+
+        for algorithm in ClusteringService.K_SWEEP_ALGORITHMS:
+            points = []
+            best_point = None
+
+            for requested_k in k_values:
+                result = ClusteringService._run_single_algorithm(
+                    algorithm,
+                    keyword_counts,
+                    n_clusters=requested_k,
+                    eps=eps,
+                    min_samples=min_samples,
+                )
+
+                parameters = result.get('parameters') or {}
+                metrics = result.get('metrics') or {}
+                effective_k = parameters.get('n_clusters_effective')
+                if effective_k is None:
+                    effective_k = parameters.get('n_components_effective')
+
+                score = ClusteringService._score_metrics(metrics)
+                point = {
+                    'requested_k': requested_k,
+                    'effective_k': effective_k,
+                    'silhouette': metrics.get('silhouette'),
+                    'davies_bouldin': metrics.get('davies_bouldin'),
+                    'calinski_harabasz': metrics.get('calinski_harabasz'),
+                    'cluster_count': metrics.get('cluster_count'),
+                    'score': score,
+                    'elapsed_ms': result.get('elapsed_ms'),
+                    'success': result.get('success', False),
+                    'error': None if result.get('success') else result.get('message'),
+                }
+                points.append(point)
+
+                if score is not None and (best_point is None or score > best_point['score']):
+                    best_point = point.copy()
+
+            sweep['algorithms'][algorithm] = {
+                'points': points,
+                'best': best_point,
+            }
+
+        return sweep
 
     @staticmethod
     def _compute_metrics(keyword_counts: Dict[str, int], labels: Dict[str, int]) -> Optional[dict]:
