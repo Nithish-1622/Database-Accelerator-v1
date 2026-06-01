@@ -815,7 +815,7 @@ export default function AudioPage() {
                   <div className="flex items-center justify-between gap-3">
                     <span className="font-semibold text-white">{row.label}</span>
                     <span className="rounded-full border border-white/10 bg-white/5 px-2 py-1 text-[10px] uppercase tracking-[0.16em] text-slate-300">
-                      Best K {row.bestK ?? 'n/a'}
+                      Best K = {row.bestK ?? 'n/a'}
                     </span>
                   </div>
                   <div className="mt-3 space-y-2 text-sm text-slate-300">
@@ -856,7 +856,7 @@ export default function AudioPage() {
                       </div>
                       {item.best?.requested_k !== undefined && item.best?.requested_k !== null && (
                         <span className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-3 py-1 text-xs font-semibold text-emerald-100">
-                          Best K {item.best.requested_k}
+                          Best K = {item.best.requested_k}
                         </span>
                       )}
                     </div>
@@ -879,7 +879,7 @@ export default function AudioPage() {
                               stroke="#f59e0b"
                               strokeDasharray="6 6"
                               strokeOpacity={0.7}
-                              label={{ value: `Best K ${item.best.requested_k}`, position: 'top', fill: '#fbbf24', fontSize: 12 }}
+                              label={{ value: `Best K = ${item.best.requested_k}`, position: 'top', fill: '#fbbf24', fontSize: 12 }}
                             />
                           )}
                           <Line
